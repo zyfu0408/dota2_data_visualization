@@ -79,6 +79,9 @@ From the hero side: Like what we described above, the heroes visulization is the
 
 In conclusion, we want to divide this whole visualization into three parts: Team, Player and Hero.
 
+![design](img/design.jpg)
+
+
 Must-have Features
 ---
 For the team component:
