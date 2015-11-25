@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Heros</title>
+
+    <!-- AngularJS -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
+    </script>
+
+    <!-- JQuery -->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script src="js/hero.js"></script>
+
+    <!-- D3.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+
+  </head>
+
+  <body ng-app="hero">
+ 
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="index.html">Home</a></li>
+            <li role="presentation"><a href="team.html">Teams</a></li>
+            <li role="presentation"><a href="player.html">Players</a></li>
+            <li role="presentation" class="active"><a href="hero.html">Heros</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Data Visualization for Dota2</h3>
+      </div>
+    </div>
+
+    <div class="container"> 
+      <h1>Heros</h1>
+      <br>
+      <br>
+
+      <div ng-controller="TabController as tb">
+        <section>
+          <ul class="nav nav-tabs">
+            <li ng-class="{ active: tb.selectTab(1) }" role="presentation">
+              <a href ng-click="tb.setTab(1)">Hero List</a>
+            </li>
+            <li ng-class="{ active: tb.selectTab(2) }" role="presentation">
+              <a href ng-click="tb.setTab(2)">Appearance</a>
+            </li>
+            <li ng-class="{ active: tb.selectTab(3) }" role="presentation">
+              <a href ng-click="tb.setTab(3)">Win Rate</a>
+            </li>
+          </ul>
+        </section>
+
+        <div ng-show="tb.selectTab(1)">
+          1
+        </div>
+        <div ng-show="tb.selectTab(2)">
+          2
+        </div>
+        <div ng-show="tb.selectTab(3)">
+          3
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+      console.log(d3);
+
+      d3.csv('data/hero.csv', function(error, data){
+        console.log(data);
+      });
+    </script>
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
