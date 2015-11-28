@@ -17,16 +17,20 @@
     <!-- JQuery -->
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
-    <script src="js/hero.js"></script>
-
     <!-- D3.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+
+    <script src="js/hero.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
     <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="css/zhongyuanfu.css" rel="stylesheet">
+
+    <style type="text/css">
+    </style>
 
   </head>
 
@@ -46,7 +50,7 @@
       </div>
     </div>
 
-    <div class="container"> 
+    <div class="container" id="content"> 
       <h1>Heros</h1>
       <br>
       <br>
@@ -54,37 +58,82 @@
       <div ng-controller="TabController as tb">
         <section>
           <ul class="nav nav-tabs">
-            <li ng-class="{ active: tb.selectTab(1) }" role="presentation">
+            <li ng-class="{ active: tb.selectedTab(1) }" role="presentation">
               <a href ng-click="tb.setTab(1)">Hero List</a>
             </li>
-            <li ng-class="{ active: tb.selectTab(2) }" role="presentation">
-              <a href ng-click="tb.setTab(2)">Appearance</a>
+            <li ng-class="{ active: tb.selectedTab(2) }" role="presentation">
+              <a href ng-click="tb.setTab(2)">Ban/Pick Rate</a>
             </li>
-            <li ng-class="{ active: tb.selectTab(3) }" role="presentation">
+            <li ng-class="{ active: tb.selectedTab(3) }" role="presentation">
               <a href ng-click="tb.setTab(3)">Win Rate</a>
             </li>
           </ul>
         </section>
 
-        <div ng-show="tb.selectTab(1)">
-          1
+        <div class="row">
+          <div class="col-md-9" ng-show="tb.selectedTab(1)">
+            <div id="herolist">
+              <div>
+                <p><img class="herotype" src="img/dota_icon/strength.png" /> <kbd>Strength</kdb></p>
+                <div id="strength">
+                </div>
+                <hr>
+              </div>
+              <div>
+                <p><img class="herotype" src="img/dota_icon/agility.png" /> <kbd>Agility</kbd></p>
+                <div id="agility">
+                </div>
+                <hr>
+              </div>
+              <div>
+                <p><img class="herotype" src="img/dota_icon/intelligence.png" /> <kbd>intelligence</kbd></p>
+                <div id="intelligence">
+                </div>
+                <hr>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-9" ng-show="tb.selectedTab(2)">
+            <div id="herobp">
+              bp
+            </div>
+          </div>
+
+          <div class="col-md-9" ng-show="tb.selectedTab(3)">
+            <div id="herowin">
+              win
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div id="herodata"> 
+              <div id="bprate" class="well">
+                bp
+              </div>
+              <div id="winrate" class="well">
+                win
+              </div>
+          </div>
         </div>
-        <div ng-show="tb.selectTab(2)">
-          2
-        </div>
-        <div ng-show="tb.selectTab(3)">
-          3
-        </div>
-      </div>
+
+      </div><!-- tabCtrl -->
 
     </div>
 
     <script>
-      console.log(d3);
+      // var width = 850;
+      // var height = 850;
 
-      d3.csv('data/hero.csv', function(error, data){
-        console.log(data);
-      });
+      // var svg = d3.select("#herolist")
+      //   .append("svg")
+      //   .attr("width", width)
+      //   .attr("height", height);
+
+      // console.log(svg);
+
+
+
     </script>
 
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

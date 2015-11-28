@@ -1,0 +1,22 @@
+.herobox {
+	margin: 3px;
+	display: inline-block;
+	width: 85px;
+	height: auto;
+}
+
+img {
+	width: 85px;
+	height: auto;
+}
+
+.herotype {
+	width: 45px;
+	height: auto;
+}
+
+#herodata {
+	margin-top: 30px;
+	padding-top: 15;
+	padding-bottom: 15;
+}
