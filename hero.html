@@ -20,8 +20,6 @@
     <!-- D3.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
 
-    <script src="js/hero.js"></script>
-
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -54,7 +52,7 @@
       <h1>Heros</h1>
       <br>
       <br>
-
+      <img src="img/hero/abaddon.png" />
       <div ng-controller="TabController as tb">
         <section>
           <ul class="nav nav-tabs">
@@ -75,67 +73,99 @@
             <div id="herolist">
               <div>
                 <p><img class="herotype" src="img/dota_icon/strength.png" /> <kbd>Strength</kdb></p>
-                <div id="strength">
-                </div>
-                <hr>
-              </div>
+                <div id="strength"></div>
+                <hr> 
+              </div> 
               <div>
                 <p><img class="herotype" src="img/dota_icon/agility.png" /> <kbd>Agility</kbd></p>
-                <div id="agility">
-                </div>
+                <div id="agility"></div>
                 <hr>
               </div>
               <div>
                 <p><img class="herotype" src="img/dota_icon/intelligence.png" /> <kbd>intelligence</kbd></p>
-                <div id="intelligence">
-                </div>
+                <div id="intelligence"></div>
                 <hr>
               </div>
-            </div>
-          </div>
+
+            </div> <!-- herolist -->
+          </div> <!-- col-md-9 -->
 
           <div class="col-md-9" ng-show="tb.selectedTab(2)">
             <div id="herobp">
               bp
-            </div>
-          </div>
+            </div>  <!-- herobp -->
+          </div>  <!-- col-md-9 -->
 
           <div class="col-md-9" ng-show="tb.selectedTab(3)">
             <div id="herowin">
               win
-            </div>
-          </div>
+            </div> <!-- herowin -->
+          </div>  <!-- col-md-9 -->
 
           <div class="col-md-3">
-            <div id="herodata"> 
-              <div id="bprate" class="well">
-                bp
-              </div>
-              <div id="winrate" class="well">
-                win
-              </div>
-          </div>
-        </div>
+            <h1><span id="heropanel" width="50px" class="label label-default">Hero Panel</span></h1>
+             <div id="herodata"> 
+                <div id="bprate">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <h4><img src="img/hero/abaddon.png" /> <strong>Abaddon</strong></h4>
+                      <div class="well well-sm"><p><strong>GPM</strong></p></div>
+                      <div class="well well-sm"><p><strong>XPM</strong></p></div>
+                      <div class="well well-sm"><p><strong>KDA</strong></p></div>
+                      <div class="well well-sm"><p><strong>Hero Damage</strong></p></div>
+                    </div>
+                  </div>
+              </div> 
+            </div>  <!-- herodata -->
+          </div>  <!-- col-md-3 -->
 
-      </div><!-- tabCtrl -->
+        </div> <!-- row -->
+      </div> <!-- tabCtrl -->
+    </div> <!-- container -->
 
+    <div class="container" id="vis">
+      <h2 id="win">Appearance VS Win Rate</h2>
+      <div id="winRateChart"></div>
+      <h2 id="bp">Ban/Pick</h2>
+      <div id="bpChart"></div>
     </div>
 
     <script>
-      // var width = 850;
-      // var height = 850;
+      var width_1 = 850;
+      var height_1 = 600;
 
-      // var svg = d3.select("#herolist")
-      //   .append("svg")
-      //   .attr("width", width)
-      //   .attr("height", height);
+      var width_2 = 900;
+      var height_2 = 1600;
 
-      // console.log(svg);
+      var padding = {
+        top: 20,
+        right: 20,
+        bottom: 40,
+        left: 50
+      };
+
+      var padding_2 = {
+        top: 20,
+        right: 30,
+        bottom: 60,
+        left: 90
+      };
+
+      var winRateSvg = d3.select("#winRateChart")
+        .append("svg")
+        .attr("width", width_1)
+        .attr("height", height_1);
+
+      var bpSvg = d3.select("#bpChart")
+          .append("svg")
+          .attr("width", width_2)
+          .attr("height", height_2);
 
 
 
     </script>
-
+    <!-- tooltips -->
+    <script src="js/hero.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </body>
 </html>
