@@ -87,6 +87,13 @@
               </div>
 
             </div> <!-- herolist -->
+
+            <div id="vis">
+              <h2 id="win">Appearance VS Win Rate</h2>
+              <div id="winRateChart"></div>
+              <h2 id="bp">Ban/Pick</h2>
+              <div id="bpChart"></div>
+            </div>
           </div> <!-- col-md-9 -->
 
           <div class="col-md-9" ng-show="tb.selectedTab(2)">
@@ -104,16 +111,7 @@
           <div class="col-md-3">
             <h1><span id="heropanel" width="50px" class="label label-default">Hero Panel</span></h1>
              <div id="herodata"> 
-                <div id="bprate">
-                  <div class="panel panel-default">
-                    <div class="panel-body">
-                      <h4><img src="img/hero/abaddon.png" /> <strong>Abaddon</strong></h4>
-                      <div class="well well-sm"><p><strong>GPM</strong></p></div>
-                      <div class="well well-sm"><p><strong>XPM</strong></p></div>
-                      <div class="well well-sm"><p><strong>KDA</strong></p></div>
-                      <div class="well well-sm"><p><strong>Hero Damage</strong></p></div>
-                    </div>
-                  </div>
+                <div id="subherodata">
               </div> 
             </div>  <!-- herodata -->
           </div>  <!-- col-md-3 -->
@@ -122,12 +120,12 @@
       </div> <!-- tabCtrl -->
     </div> <!-- container -->
 
-    <div class="container" id="vis">
+    <!-- <div class="container" id="vis">
       <h2 id="win">Appearance VS Win Rate</h2>
       <div id="winRateChart"></div>
       <h2 id="bp">Ban/Pick</h2>
       <div id="bpChart"></div>
-    </div>
+    </div> -->
 
     <script>
       var width_1 = 850;

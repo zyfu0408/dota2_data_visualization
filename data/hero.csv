@@ -1,4 +1,4 @@
-Hero,Name,Games,W,L,WinRate,Lvl,GPM,XPM,KDA,Hero Damage,PTimes,BTimes,BPRates,HeroType
+Hero,Name,Games,W,L,WinRate,Lvl,GPM,XPM,KDA,HeroDamage,PTimes,BTimes,BPRates,HeroType
 tusk,Tusk,56,28,28,0.5,15.3,304,333,2.7,7539,56,42,99,S
 winter_wyvern,Winter Wyvern,49,27,22,0.551,13.9,275,288,2.7,5768,49,36,85.9,I
 gyrocopter,Gyrocopter,45,20,25,0.444,19.2,526,508,3.7,14223,45,35,80.8,A

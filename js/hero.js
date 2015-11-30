@@ -19,7 +19,7 @@
 
 d3.csv("data/hero.csv", function(error, data){
 	data = data.sort(compareByName);
-	console.log(data);
+	//console.log(data);
 
 	var strength = [];
 	var agility = [];
@@ -39,7 +39,7 @@ d3.csv("data/hero.csv", function(error, data){
 	for (var i = 0; i < strength.length; i++) {
 		var imageSrc = "img/hero/" + strength[i].Hero + ".png";
 		strengthList += "<div class='herobox'>";
-		strengthList += "<img id='#" + strength[i].Name + "' src='" + imageSrc + "' />";
+		strengthList += "<img id='" + strength[i].Hero + "' src='" + imageSrc + "' />";
 		strengthList += "</div>";
 	}
 	$("#strength").html(strengthList);
@@ -48,7 +48,7 @@ d3.csv("data/hero.csv", function(error, data){
 	for (var i = 0; i < agility.length; i++) {
 		var imageSrc = "img/hero/" + agility[i].Hero + ".png";
 		agilityList += "<div class='herobox'>";
-		agilityList += "<img id='#" + agility[i].Name + "' src='" + imageSrc + "' />";
+		agilityList += "<img id='" + agility[i].Hero + "' src='" + imageSrc + "' />";
 		agilityList += "</div>";
 	}
 	$("#agility").html(agilityList);
@@ -57,10 +57,56 @@ d3.csv("data/hero.csv", function(error, data){
 	for (var i = 0; i < intelligence.length; i++) {
 		var imageSrc = "img/hero/" + intelligence[i].Hero + ".png";
 		intelligenceList += "<div class='herobox'>";
-		intelligenceList += "<img id='#" + intelligence[i].Name + "' src='" + imageSrc + "' />";
+		intelligenceList += "<img id='" + intelligence[i].Hero + "' src='" + imageSrc + "' />";
 		intelligenceList += "</div>";
 	}
 	$("#intelligence").html(intelligenceList);
+
+	$("img").on("click", function(d){
+		for (var i = 0; i < data.length; i++) {
+			if ($(this).attr("id") === data[i].Hero) {
+				if ($(this).parent().css("border-color") === "rgb(0, 0, 255)") {
+					$(this).parent().css({"border-color": "rgb(51,51,51)", "border-width": 0});
+					$("#" + data[i].Hero + "Panel").remove();
+					break;
+				} else {
+					$(this).parent().css({ "border-style": "solid", "border-color": "blue", "border-width": 3});
+					var heroPanel = "";
+					heroPanel += "<div id='" + data[i].Hero + "Panel' class='panel panel-default'>";
+					heroPanel += "<div class='panel-body'>";
+					heroPanel += "<h4><img postion='relative' src='img/hero/" + data[i].Hero + ".png' /> <span class='heroName'><strong>" + data[i].Name + "</strong><span></h4>";
+					heroPanel += "<div class='well well-sm list-group'>";
+					heroPanel += "<h4 class='list-group-item-heading'>GPM</h4>";
+					heroPanel += "<p class='list-group-item-text'><span class='lead'>" + data[i].GPM + "</span> <em>gold per minute</em></p></div>";
+					heroPanel += "<div class='well well-sm list-group'>";
+					heroPanel += "<h4 class='list-group-item-heading'>XPM</h4>";
+					heroPanel += "<p class='list-group-item-text'><span class='lead'>" + data[i].XPM + "</span> <em>experience per minute</em></p></div>";
+					heroPanel += "<div class='well well-sm list-group'>";
+					heroPanel += "<h4 class='list-group-item-heading'>KDA</h4>";
+					heroPanel += "<p class='list-group-item-text'><span class='lead'>" + data[i].KDA + "</span> <em>(kills + assists) / deaths</em></p></div>";
+					heroPanel += "<div class='well well-sm list-group'>";
+					heroPanel += "<h4 class='list-group-item-heading'>Hero Damage</h4>";
+					heroPanel += "<p class='list-group-item-text'><span class='lead'>" + data[i].HeroDamage + "</span> <em>damage per game</em></p></div>";
+					heroPanel += "</div></div>";
+					if ($("#subherodata").children().length <= 4) {
+						$("#subherodata").prepend(heroPanel);
+					} else {
+						var word = $("#subherodata").children().last().attr("id");
+						var wordlength = $("#subherodata").children().last().attr("id").length;
+						var substring = word.substring(0, wordlength - 5);
+						console.log(substring);
+						$("#" + substring).parent().css({"border-color": "rgb(51,51,51)", "border-width": 0});
+						$("#subherodata").children().last().remove();
+						$("#subherodata").prepend(heroPanel);
+					};
+					
+					break;
+				}
+			}
+		}
+	});
+
+// <div style='border-left:1px dotted #000;height:90%'></div>
 
 	var appearMax = d3.max(data.map(function(d){
 		return parseInt(d.PTimes);
@@ -167,7 +213,7 @@ d3.csv("data/hero.csv", function(error, data){
             		div.transition()		
                 		.duration(500)		
                 		.style("opacity", 0);	
-        		});		
+        		});	
 
 	winRateSvg
 		.append("g")
@@ -186,15 +232,6 @@ d3.csv("data/hero.csv", function(error, data){
        		.attr("class", "axis")
        		.attr("transform", "translate(" + padding.left + "," + (height_1 - padding.bottom) + ")")
        		.call(xAppearAxis);
-
-    // winRateSvg
-    // 	.append("text")
-    // 		.attr("transform", "translate(" + padding.left / 2 + "," + (padding.top + height_1 / 2) + ")")
-    // 		.attr("transform", "rotate(270)")
-    // 		.attr("x", 200)
-    // 		.attr("y", 200)
-    // 		.attr("stroke-width", 2)
-    // 		.text("Win Rate");
 
     var xBpScale = d3.scale.linear()
     			.rangeRound([0, width_2 - padding_2.left - padding_2.right]);
@@ -272,40 +309,13 @@ d3.csv("data/hero.csv", function(error, data){
     	.attr("transform", "translate(" + padding_2.left + "," + (height_2 - padding_2.bottom) + ")")
     	.call(xBpAxis);
 
-
-
-
-	// var xScale = d3.scale.linear()
-	// 				.domain([0, 1])
-	// 				.range([0, width - padding.left - padding.right]);
-
-	// var yScale = d3.scale.ordinal()
-	// 				.domain(d3.range(data.length))
-	// 				.rangeRoundBands([0, height - padding.top - padding.bottom]);
-
-	// var rectPadding = 4;
-
-	// var winRateRects = svg.selectAll(".WinRateRects")
-	// 			.data(data)
-	// 			.enter()
-	// 			.append("rect")
-	// 			.attr("class", "WinRateRects")
-	// 			.attr("x", 0)
-	// 			.attr("y", function(d,i){
-	// 				return yScale.rangeBand() * i;
-	// 			})
-	// 			.attr("width", function(d, i){
-	// 				return xScale(d.WinRate);
-	// 			})
-	// 			.attr("height", yScale.rangeBand() - rectPadding);
-
 });
 
-var color = [ "#ffffb2", "#fee391", "#fec44f", "#fe9929", "#ec7014", "#cc4c02", "#8c2d04", "#3A0A00" ];
+// var color = [ "#ffffb2", "#fee391", "#fec44f", "#fe9929", "#ec7014", "#cc4c02", "#8c2d04", "#3A0A00" ];
 
-var colorScale = d3.scale.linear()
-		.domain([0, 0.14, 0.29, 0.43, 0.57, 0.71, 0.86, 1])
-		.range(color);
+// var colorScale = d3.scale.linear()
+// 		.domain([0, 0.14, 0.29, 0.43, 0.57, 0.71, 0.86, 1])
+// 		.range(color);
 
 function compareByName(a, b) {
 	if (a.Name < b.Name) {
