@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,20 +8,33 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Data Visualization for Dota2</title>
+    <title>Players</title>
+
+    <!-- AngularJS -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
+    </script>
+
+    <!-- JQuery -->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- D3.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
     <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="css/zhongyuanfu.css" rel="stylesheet">
 
+    <style type="text/css">
     </style>
+
   </head>
 
-  <body>
-
-    <div class="homecontainer">
+  <body ng-app="hero">
+ 
+    <div class="container">
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
@@ -33,23 +46,184 @@
         </nav>
         <h3 class="text-muted">Data Visualization for Dota2</h3>
       </div>
+    </div>
 
-      <div class="jumbotron">
-        <h1>player View</h1>
-      </div>
+    <div class="container" id="content"> 
+      <h1>Players</h1>
+      <br>
+      <br>
+      <div ng-controller="TabController as tb">
+        <section>
+          <ul class="nav nav-tabs">
+            <li ng-class="{ active: tb.selectedTab(1) }" role="presentation">
+              <a href ng-click="tb.setTab(1)">Player List</a>
+            </li>
+            <li ng-class="{ active: tb.selectedTab(2) }" role="presentation">
+              <a href ng-click="tb.setTab(2)">Player Ranking</a>
+            </li>
+          </ul>
+        </section>
 
-      <div class="row">
-        <p><a href="http://stats.nba.com/vs/#!/?PlayerID=977&VsPlayerID=201939">Player General Information/Comparison</a></p>
-        <p><a class="btn btn-primary" href="http://bl.ocks.org/mbostock/3887051" role="button">Visulization Type</a></p>
-        <p><a href="http://www.dotabuff.com/players/111620041/trends?metric=gold">Player Performance Trend</a></p>
-        <p><a class="btn btn-primary" href="http://bl.ocks.org/rkirsling/33a9e350516da54a5d4f" role="button">Visulization Type</a></p>
-      </div>
+        <div class="row">
+          <div class="col-md-6" ng-show="tb.selectedTab(1)">
+            <div id="herolist">
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/Alliance.png" /> <kbd>Alliance</kdb></p>
+                <div id="Alliance"></div>
+                <hr> 
+              </div>
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/CDEC Gaming.png" /> <kbd>CDEC Gaming</kdb></p>
+                <div id="CDEC"></div>
+                <hr> 
+              </div> 
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/Cloud9.png" /> <kbd>Cloud9</kdb></p>
+                <div id="Cloud9"></div>
+                <hr> 
+              </div>
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/Ehome.png" /> <kbd>Ehome</kdb></p>
+                <div id="Ehome"></div>
+                <hr> 
+              </div>  
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/Evil Geniuses.png" /> <kbd>Evil Geniuses</kdb></p>
+                <div id="EG"></div>
+                <hr> 
+              </div>  
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/Fnatic.png" /> <kbd>Fnatic</kdb></p>
+                <div id="Fnatic"></div>
+                <hr> 
+              </div>  
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/LGD-Gaming.png" /> <kbd>LGD Gaming</kdb></p>
+                <div id="LGD"></div>
+                <hr> 
+              </div>  
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/Mineski.png" /> <kbd>Mineski</kdb></p>
+                <div id="Mineski"></div>
+                <hr> 
+              </div>  
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/Newbee Young.png" /> <kbd>Newbee Young</kdb></p>
+                <div id="NBY"></div>
+                <hr> 
+              </div>  
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/Newbee.png" /> <kbd>Newbee</kdb></p>
+                <div id="NB"></div>
+                <hr> 
+              </div>  
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/OG.png" /> <kbd>OG</kdb></p>
+                <div id="OG"></div>
+                <hr> 
+              </div>  
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/Team Serect.png" /> <kbd>Team Secret</kdb></p>
+                <div id="Secret"></div>
+                <hr> 
+              </div>  
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/Team Unknown.png" /> <kbd>Team Unknown</kdb></p>
+                <div id="Unknown"></div>
+                <hr> 
+              </div>  
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/Vega Squadron.png" /> <kbd>Vega Squadron</kdb></p>
+                <div id="Vega"></div>
+                <hr> 
+              </div>  
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/Vici Gaming.png" /> <kbd>Vici Gaming</kdb></p>
+                <div id="VG"></div>
+                <hr> 
+              </div>  
+              <div>
+                <p><img class="playertype" src="img/TeamBadge/Virtus_pro.png" /> <kbd>Virtus Pro</kdb></p>
+                <div id="VP"></div>
+                <hr> 
+              </div>  
+            </div> <!-- herolist -->
 
-    </div> <!-- homecontainer -->
+            <!-- <div id="vis">
+              <h2 id="win">Appearance VS Win Rate</h2>
+              <div id="winRateChart"></div>
+              <h2 id="bp">Ban/Pick</h2>
+              <div id="bpChart"></div>
+            </div> -->
+          </div> <!-- col-md-9 -->
+
+          <div class="col-md-9" ng-show="tb.selectedTab(2)">
+            <div id="herobp">
+              bp
+            </div>  <!-- herobp -->
+          </div>  <!-- col-md-9 -->
+
+          <div class="col-md-9" ng-show="tb.selectedTab(3)">
+            <div id="herowin">
+              win
+            </div> <!-- herowin -->
+          </div>  <!-- col-md-9 -->
+
+          <div class="col-md-3">
+            <h1><span id="playerpanel" width="200px" class="label label-default">Player Information</span></h1>
+             <div id="playerdata"> 
+                <div id="subplayerdata">
+                </div> 
+            </div>  <!-- herodata -->
+          </div>  <!-- col-md-3 -->
+
+        </div> <!-- row -->
+      </div> <!-- tabCtrl -->
+    </div> <!-- container -->
+
+    <!-- <div class="container" id="vis">
+      <h2 id="win">Appearance VS Win Rate</h2>
+      <div id="winRateChart"></div>
+      <h2 id="bp">Ban/Pick</h2>
+      <div id="bpChart"></div>
+    </div> -->
+
+    <script>
+      var width_1 = 850;
+      var height_1 = 600;
+
+      var width_2 = 900;
+      var height_2 = 1600;
+
+      var padding = {
+        top: 20,
+        right: 20,
+        bottom: 40,
+        left: 50
+      };
+
+      var padding_2 = {
+        top: 20,
+        right: 30,
+        bottom: 60,
+        left: 90
+      };
+
+      var winRateSvg = d3.select("#winRateChart")
+        .append("svg")
+        .attr("width", width_1)
+        .attr("height", height_1);
+
+      var bpSvg = d3.select("#bpChart")
+          .append("svg")
+          .attr("width", width_2)
+          .attr("height", height_2);
 
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
-    <!-- Bootstrap JS -->
+
+    </script>
+    <!-- tooltips -->
+    <script src="js/player.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </body>
+</html>

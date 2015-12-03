@@ -5,6 +5,13 @@
 	height: auto;
 }
 
+.playerbox {
+  margin: 3px;
+  display: inline-block;
+  width: 85px;
+  height: auto;
+}
+
 img {
 	padding-right : 4px;
 	width: 83px;
@@ -16,10 +23,21 @@ img {
 	height: auto;
 }
 
+.playertype {
+  width: 60px;
+  height: auto;
+}
+
 #herodata {
 	margin-top: 30px;
 	padding-top: 15;
 	padding-bottom: 15;
+}
+
+#playerdata {
+  margin-top: 60px;
+  padding-top: 30;
+  padding-bottom: 30;
 }
 
 #winRateChart {
