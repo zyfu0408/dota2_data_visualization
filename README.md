@@ -58,7 +58,7 @@ Questions
 ---
 ### Team Visualization
 
-We are trying to show each hero’ performance during the Frankfurt Tournament in the hero page. The specific data for each hero covered including the draft part and the detailed part. For draft part, the data contains hero’s average ban/pick phase, average ban/pick position, ban/pick times and ban/pick rate. For the detailed part, the data covers hero’s appearance times, its win rate, the average level, the average GPM (gold per minute), the average XPM (experience per minute), and the average KDA ((kills + assists) / deaths). 
+We are trying to show the teams and corresponding information that participate in the Frankfurt Tournament in the “Team” page. And It have three parts-the team logo, the bracket of all games, and the cross table of all compete, it contain the data about the score of one compete and which team survived. When click team logo, the timeline of this team will shown in the whole bracket. For the cross table, we can clearly get the information of win/loss between teams.
 
 ### Player Visualization
 
@@ -73,6 +73,7 @@ Exploratory Data Analysis
 
 ### Team Visualization
 
+In the team part, we use bracket layout chart to show the timeline of a team, and how long did they go, and the detailed score of each competition. Each team has its own unique time line. In the cross table visualization, we found that some team has very good performance and some are very poor. So we change the team position of the cross table and make the best team in the outer rim of this chart, that’s looks better.
 
 ### Player Visualization
 
@@ -87,6 +88,8 @@ Design Evolution
 ---
 ### Team Visualization
 
+Before we use bracket layout, we tried to use grid to directly show the information of each game, because it’s very easy to realize. But after finished, we found that it hard to show how long a team went, that is, when a team out from the tournament. So we decide to change grid to bracket.
+
 ### Player Visualization
 
 At first, we want to use a bubble chart to show the comparison of the players. However, we finally made our decision to use bar chart, which is more obvious and clearer. We think the bar chart is more professional after we reviewed some sports visulization website. The scatter plot is also inspired from some statistic website. Since there are a lot players in this tournament, we think we can represent each player as a point in the visulization and easily justify which player is better. 
@@ -100,33 +103,38 @@ Implementation
 ---
 ### Team Visualization
 
+For the team visulization, we decide to use a bracket type. When we click a team logo, there will be a red timeline shown in the bracket show in this picture.
+![com](imgdoc/bracket.png)
+####<center>Figure 5. Designed bracket visulization</center>
+
+
 ### Player Visualization
 
 For the player statistics comparison, we would like to use the bar chart to compare two players. The design is inspired by the nba statistic webpage. We think this design can directly show which player is better. Like the "Traditional", "advanced" in NBA statistics terms, we also have different statistics criteria, such as "basic", "damage made" and "misc". 
 ![com](imgdoc/compare.png)
-####<center>Figure 5. NBA statistic website</center>
+####<center>Figure 6. NBA statistic website</center>
 
 For the player ranking part, we would like to use the scatter plot to compare different players based on different criteria. For example, the x-axis can represent the gold earned per game for one player and the y-axis can represent the damage he made per game. In this plot, if one player can have the lower earned gold and the higher made damage, we can conclude this player is a high-rated player.
 ![scatter](imgdoc/scatter.png)
-####<center>Figure 6. Scatter Plot Example</center>
+####<center>Figure 7. Scatter Plot Example</center>
 
 ### Hero Visualization
 
 We use the bipartite chart to show the detailed data for each hero. The very left column contains the hero types, which is the strength hero, agility hero and the intelligence hero, and each type’s ban/pick times, which is shown by he height of the left rectangles. In the right side of chart, each hero’s ban/pick situation and its more detailed permanence will be shown when your mouse is over the specific hero row or its corresponding rectangle. 
 ![bar](imgdoc/bipartitle.png)
-####<center>Figure 7. Bipartitle Example</center>
+####<center>Figure 8. Bipartitle Example</center>
 
 
 The combination of the horizontal axis at the top and the vertical 0 axis in the middle of the chart is showing how many games a hero loses and how many games a hero wins. The bar left to the vertical 0 axis represents the lose games and the bar right to the vertical 0 axis represents the win games. Each bar vertically stands for each hero, the order of which can be filtered by the hero name, the appearance times or the win rate.
 ![stack](imgdoc/stackbar.png)
-####<center>Figure 8. Stackbar Example</center>
+####<center>Figure 9. Stackbar Example</center>
 
 
 Evaluation
 ---
 
 ### Team Visualization
-
+What we have done are trying to show the detailed compete and win/loss information in the tournement. In the future, we want to improve the bracket and let it show when user click and hide when user click it again. 
 
 ### Player Visualization
 From the data visulization we have right now, we know that we cannot easily judge one player's performance by only one criteria. We should rank the player performance based on their role in his team. In terms of improving the visualization, we want to add a "Hall of Fame" section to see the record of this tournament. Personally I want to use a bubble chart to show these records, of course, we are trying to find a better visualization type to show them right now.  
