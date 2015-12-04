@@ -1,0 +1,131 @@
+.herobox {
+	margin: 3px;
+	display: inline-block;
+	width: 85px;
+	height: auto;
+}
+
+.playerbox {
+  margin: 3px;
+  display: inline-block;
+  width: 85px;
+  height: auto;
+}
+
+img {
+	padding-right : 4px;
+	width: 83px;
+	height: auto;
+}
+
+.herotype {
+	width: 45px;
+	height: auto;
+}
+
+.playertype {
+  width: 60px;
+  height: auto;
+}
+
+#herodata {
+	margin-top: 30px;
+	padding-top: 15;
+	padding-bottom: 15;
+}
+
+#playerdata {
+  margin-top: 60px;
+  padding-top: 30;
+  padding-bottom: 30;
+}
+
+#winRateChart {
+	max-width: 86%;
+	height: auto;
+	margin-left: 100;
+
+}
+
+#bpChart {
+	max-width: 86%;
+	height: auto;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+	font-family: sans-serif;
+	font-size: 11px;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+div.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 150px;					
+    height: 165px;					
+    padding: auto;				
+    font: 12px sans-serif;		
+    background: lightsteelblue;	
+    border: 0px;		
+    border-radius: 5px;			
+    pointer-events: none;			
+}
+
+#bp {
+	position: relative;
+	left: 350px;
+}
+
+#win {
+	position: relative;
+	left: 260px;
+}
+
+#heropanel {
+	position: relative;
+	left: 50px;
+}
+
+.heroName {
+	position: relative;
+	left: 11px;
+}
+
+.panel {
+	padding: 4px;
+}

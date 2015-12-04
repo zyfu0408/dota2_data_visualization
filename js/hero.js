@@ -1,0 +1,348 @@
+(function(){
+
+	var app = angular.module('hero', []);
+
+	app.controller('TabController', function(){
+		this.tab = 1;
+
+		this.setTab = function(setTab){
+			this.tab = setTab;
+		};
+
+		this.selectedTab = function(selectedTab){
+			return this.tab === selectedTab;
+		}
+
+	});
+})();
+
+
+d3.csv("data/hero.csv", function(error, data){
+	data = data.sort(compareByName);
+	//console.log(data);
+
+	var strength = [];
+	var agility = [];
+	var intelligence = [];
+
+	for (var i = 0; i < data.length; i++) {
+		if (data[i].HeroType === "S") {
+			strength.push(data[i]);
+		} else if (data[i].HeroType === "A") {
+			agility.push(data[i]);
+		} else {
+			intelligence.push(data[i]);
+		}
+	}
+
+	var strengthList = "";
+	for (var i = 0; i < strength.length; i++) {
+		var imageSrc = "img/hero/" + strength[i].Hero + ".png";
+		strengthList += "<div class='herobox'>";
+		strengthList += "<img id='" + strength[i].Hero + "' src='" + imageSrc + "' />";
+		strengthList += "</div>";
+	}
+	$("#strength").html(strengthList);
+
+	var agilityList = "";
+	for (var i = 0; i < agility.length; i++) {
+		var imageSrc = "img/hero/" + agility[i].Hero + ".png";
+		agilityList += "<div class='herobox'>";
+		agilityList += "<img id='" + agility[i].Hero + "' src='" + imageSrc + "' />";
+		agilityList += "</div>";
+	}
+	$("#agility").html(agilityList);
+
+	var intelligenceList = "";
+	for (var i = 0; i < intelligence.length; i++) {
+		var imageSrc = "img/hero/" + intelligence[i].Hero + ".png";
+		intelligenceList += "<div class='herobox'>";
+		intelligenceList += "<img id='" + intelligence[i].Hero + "' src='" + imageSrc + "' />";
+		intelligenceList += "</div>";
+	}
+	$("#intelligence").html(intelligenceList);
+
+	$("img").on("click", function(d){
+		for (var i = 0; i < data.length; i++) {
+			if ($(this).attr("id") === data[i].Hero) {
+				if ($(this).parent().css("border-color") === "rgb(0, 0, 255)") {
+					$(this).parent().css({"border-color": "rgb(51,51,51)", "border-width": 0});
+					$("#" + data[i].Hero + "Panel").remove();
+					break;
+				} else {
+					$(this).parent().css({ "border-style": "solid", "border-color": "blue", "border-width": 3});
+					var heroPanel = "";
+					heroPanel += "<div id='" + data[i].Hero + "Panel' class='panel panel-default'>";
+					heroPanel += "<div class='panel-body'>";
+					heroPanel += "<h4><img postion='relative' src='img/hero/" + data[i].Hero + ".png' /> <span class='heroName'><strong>" + data[i].Name + "</strong><span></h4>";
+					heroPanel += "<div class='well well-sm list-group'>";
+					heroPanel += "<h4 class='list-group-item-heading'>GPM</h4>";
+					heroPanel += "<p class='list-group-item-text'><span class='lead'>" + data[i].GPM + "</span> <em>gold per minute</em></p></div>";
+					heroPanel += "<div class='well well-sm list-group'>";
+					heroPanel += "<h4 class='list-group-item-heading'>XPM</h4>";
+					heroPanel += "<p class='list-group-item-text'><span class='lead'>" + data[i].XPM + "</span> <em>experience per minute</em></p></div>";
+					heroPanel += "<div class='well well-sm list-group'>";
+					heroPanel += "<h4 class='list-group-item-heading'>KDA</h4>";
+					heroPanel += "<p class='list-group-item-text'><span class='lead'>" + data[i].KDA + "</span> <em>(kills + assists) / deaths</em></p></div>";
+					heroPanel += "<div class='well well-sm list-group'>";
+					heroPanel += "<h4 class='list-group-item-heading'>Hero Damage</h4>";
+					heroPanel += "<p class='list-group-item-text'><span class='lead'>" + data[i].HeroDamage + "</span> <em>damage per game</em></p></div>";
+					heroPanel += "</div></div>";
+					if ($("#subherodata").children().length <= 4) {
+						$("#subherodata").prepend(heroPanel);
+					} else {
+						var word = $("#subherodata").children().last().attr("id");
+						var wordlength = $("#subherodata").children().last().attr("id").length;
+						var substring = word.substring(0, wordlength - 5);
+						console.log(substring);
+						$("#" + substring).parent().css({"border-color": "rgb(51,51,51)", "border-width": 0});
+						$("#subherodata").children().last().remove();
+						$("#subherodata").prepend(heroPanel);
+					};
+					
+					break;
+				}
+			}
+		}
+	});
+
+// <div style='border-left:1px dotted #000;height:90%'></div>
+
+	var appearMax = d3.max(data.map(function(d){
+		return parseInt(d.PTimes);
+	}));
+	
+	var xAppearScale = d3.scale.linear()
+					.domain([0, appearMax])
+					.range([0, width_1 - padding.left - padding.right]);
+
+	var yWinScale = d3.scale.linear()
+					.domain([0, 1])
+					.range([height_1 - padding.top - padding.bottom, 0]);
+
+	var xAppearAxis = d3.svg.axis()
+					.scale(xAppearScale)
+					.orient("bottom");
+
+	var yWinAxis = d3.svg.axis()
+					.scale(yWinScale)
+					.orient("left");
+
+	var div = d3.select("body").append("div")	
+    		.attr("class", "tooltip")				
+    		.style("opacity", 0);
+
+	// var tip = d3.tip()
+	//   .attr('class', 'd3-tip')
+	//   .offset([-10, 0])
+	//   .html(function(d) {
+	//     return "<strong>Name:</strong> <span style='color:red'>name</span>";
+	// });
+
+	var lineRange = 5 / 56 * (width_1 - padding.left - padding.right);
+	var lineHeightRange = (height_1 - padding.top - padding.bottom) / 10;
+
+	var lineHeight = height_1 - padding.top - padding.bottom;
+	var lineWidth = width_1 - padding.right - padding.left;
+
+	var linePoints = [lineRange, lineRange * 2, lineRange * 3, lineRange * 4, lineRange * 5, lineRange * 6, lineRange * 7, lineRange * 8, lineRange * 9, lineRange * 10, lineRange * 11, width_1 - padding.left - padding.right];
+	var linePoints_2 = [0, lineHeightRange, lineHeightRange * 2, lineHeightRange * 3, lineHeightRange * 4, lineHeightRange * 5, lineHeightRange * 6, lineHeightRange * 7, lineHeightRange * 8, lineHeightRange * 9];
+
+	var lines = winRateSvg.selectAll(".y Lines")
+			.data(linePoints)
+			.enter()
+			.append("line")
+				.attr("class", "y Lines")
+				.attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+				.attr("x1", function(d) {
+					return d;
+				})
+				.attr("y1", 0)
+				.attr("x2", function(d){
+					return d;
+				})
+				.attr("y2", lineHeight)
+				.style("stroke", "lightgrey");
+
+	var lines_2 = winRateSvg.selectAll(".x Lines")
+			.data(linePoints_2)
+			.enter()
+			.append("line")
+				.attr("class", "x Lines")
+				.attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+				.attr("x1", 0)
+				.attr("y1", function(d){
+					return d;
+				})
+				.attr("x2", lineWidth)
+				.attr("y2", function(d){
+					return d;
+				})
+				.style("stroke", "lightgrey");
+
+	var points = winRateSvg.selectAll(".HeroPoints")
+				.data(data)
+				.enter()
+				.append("circle")
+					.attr("class", "HeroPoints")
+					.attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+					.attr("cx", function(d){
+						return xAppearScale(d.PTimes);
+					})
+					.attr("cy", function(d){
+						return yWinScale(d.WinRate);
+					})
+					.attr("r", 7)
+					.attr("fill", "steelblue")
+				.on("mouseover", function(d) {		
+		            div.transition()		
+		                .duration(200)		
+		                .style("opacity", .9);		
+		            div	.html("<img float='left' width='120' height='auto' src='img/hero/" + d.Hero + ".png' />"
+		            			+ "<br>"
+		            			+ "<p><strong>Hero: " + d.Name + "</strong></p>"
+		            			+ "<p><strong>Appearance: " + d.Games + "</strong></p>"
+		            			+ "<p><strong>Win: " + d.W + "</strong></p>"
+		            			+ "<p><strong>Lose: " + d.L + "</strong></p>"
+		            			+ "<p><strong>Win Rate: " + d.WinRate * 100 + "%</strong></p>"
+		            		)	
+		                .style("left", (d3.event.pageX + 10) + "px")		
+		                .style("top", (d3.event.pageY - 20) + "px");	
+		        })
+		        .on("mouseout", function(d) {		
+            		div.transition()		
+                		.duration(500)		
+                		.style("opacity", 0);	
+        		});	
+
+	winRateSvg
+		.append("g")
+	 		.attr("class", "axis")
+	 		.attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+	 		.call(yWinAxis);
+	 	// .append("text")
+   //     		.attr("transform", "rotate(90)")
+   //     		.attr("y", 6)
+   //     		.attr("dy", ".71em")
+   //     		.style("text-anchor", "center")
+   //     		.text("Win Rate");
+
+    winRateSvg
+    	.append("g")
+       		.attr("class", "axis")
+       		.attr("transform", "translate(" + padding.left + "," + (height_1 - padding.bottom) + ")")
+       		.call(xAppearAxis);
+
+    var xBpScale = d3.scale.linear()
+    			.rangeRound([0, width_2 - padding_2.left - padding_2.right]);
+
+    var yHeroScale = d3.scale.ordinal()
+    			.rangeRoundBands([0, height_2 - padding_2.top - padding_2.bottom], .1);
+
+    var color = d3.scale.ordinal()
+    			.range(["#43BFC7", "#C74C44"]);
+
+    var xBpAxis = d3.svg.axis()
+    			.scale(xBpScale)
+    			.orient("bottom");
+
+    var yHeroAxis = d3.svg.axis()
+    			.scale(yHeroScale)
+    			.orient("left");
+
+    color.domain(d3.keys(data[0]).filter(function(key) {
+    	return (key === "PTimes" || key === "BTimes");
+    }));
+
+    data.forEach(function(d){
+    	var y0 = 0;
+    	d.bp = color.domain().map(function(name){
+    		return {
+    			name: name,
+    			y0: y0,
+    			y1: y0 += +d[name]
+    		};
+    	});
+    	d.total = d.bp[d.bp.length - 1].y1;
+    });
+
+    yHeroScale.domain(data.map(function(d){
+    	return d.Name;
+    }));
+
+    xBpScale.domain([0, d3.max(data, function(d){
+    	return d.total;
+    })]);
+
+    var bp = bpSvg.selectAll(".HeroBp")
+    		.data(data)
+    		.enter().append("g")
+    		.attr("class", "g")
+    		.attr("transform", function(d){
+    			return "translate(" + padding_2.left + "," + (padding_2.top + yHeroScale(d.Name)) + ")";
+    		});
+
+    bp.selectAll("rect")
+    	.data(function(d){
+    		return d.bp;
+    	})
+    	.enter()
+    	.append("rect")
+    	.attr("height", yHeroScale.rangeBand())
+    	.attr("width", function(d){
+    		return xBpScale(d.y1) - xBpScale(d.y0);
+    	})
+    	.attr("x", function(d){
+    		return xBpScale(d.y0);
+    	})
+    	.style("fill", function(d){
+    		return color(d.name);
+    	});
+
+    bpSvg.append("g")
+    	.attr("class", "yhero axis")
+    	.attr("transform", "translate(" + padding_2.left + "," + padding_2.top + ")")
+    	.call(yHeroAxis);
+
+    bpSvg.append("g")
+    	.attr("class", "xhero axis")
+    	.attr("transform", "translate(" + padding_2.left + "," + (height_2 - padding_2.bottom) + ")")
+    	.call(xBpAxis);
+
+});
+
+// var color = [ "#ffffb2", "#fee391", "#fec44f", "#fe9929", "#ec7014", "#cc4c02", "#8c2d04", "#3A0A00" ];
+
+// var colorScale = d3.scale.linear()
+// 		.domain([0, 0.14, 0.29, 0.43, 0.57, 0.71, 0.86, 1])
+// 		.range(color);
+
+function compareByName(a, b) {
+	if (a.Name < b.Name) {
+		return -1;
+	}
+	if (a.Name > b.Name) {
+		return 1;
+	}
+	return 0;
+}
+
+function compareByBpRate(a, b) {
+	if (a.BPRates > b.BPRates) {
+		return -1;
+	}
+	if (a.BPRates < b.BPRates) {
+		return 1;
+	}
+	return 0;
+}
+
+function compareByWinRate(a, b) {
+	if (a.WinRate > b.WinRate) {
+		return -1;
+	}
+	if (a.WinRate < b.WinRate) {
+		return 1;
+	}
+	return 0;
+}
