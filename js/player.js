@@ -77,7 +77,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var allianceList = "";
 	for (var i = 0; i < alliance.length; i++) {
-		var imageSrc = "img/Player/" + alliance[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + alliance[i].Player + ".png";
 		allianceList += "<div class='playerbox'>";
 		allianceList += "<img id='" + alliance[i].Player + "' src='" + imageSrc + "' />";
 		allianceList += "</div>";
@@ -86,7 +86,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var cdecList = "";
 	for (var i = 0; i < cdec.length; i++) {
-		var imageSrc = "img/Player/" + cdec[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + cdec[i].Player + ".png";
 		cdecList += "<div class='playerbox'>";
 		cdecList += "<img id='" + cdec[i].Player + "' src='" + imageSrc + "' />";
 		cdecList += "</div>";
@@ -95,7 +95,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var c9List = "";
 	for (var i = 0; i < c9.length; i++) {
-		var imageSrc = "img/Player/" + c9[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + c9[i].Player + ".png";
 		c9List += "<div class='playerbox'>";
 		c9List += "<img id='" + c9[i].Player + "' src='" + imageSrc + "' />";
 		c9List += "</div>";
@@ -104,7 +104,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var ehomeList = "";
 	for (var i = 0; i < ehome.length; i++) {
-		var imageSrc = "img/Player/" + ehome[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + ehome[i].Player + ".png";
 		ehomeList += "<div class='playerbox'>";
 		ehomeList += "<img id='" + ehome[i].Player + "' src='" + imageSrc + "' />";
 		ehomeList += "</div>";
@@ -113,7 +113,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var egList = "";
 	for (var i = 0; i < eg.length; i++) {
-		var imageSrc = "img/Player/" + eg[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + eg[i].Player + ".png";
 		egList += "<div class='playerbox'>";
 		egList += "<img id='" + eg[i].Player + "' src='" + imageSrc + "' />";
 		egList += "</div>";
@@ -122,7 +122,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var fnaticList = "";
 	for (var i = 0; i < fnatic.length; i++) {
-		var imageSrc = "img/Player/" + fnatic[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + fnatic[i].Player + ".png";
 		fnaticList += "<div class='playerbox'>";
 		fnaticList += "<img id='" + fnatic[i].Player + "' src='" + imageSrc + "' />";
 		fnaticList += "</div>";
@@ -131,7 +131,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var lgdList = "";
 	for (var i = 0; i < lgd.length; i++) {
-		var imageSrc = "img/Player/" + lgd[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + lgd[i].Player + ".png";
 		lgdList += "<div class='playerbox'>";
 		lgdList += "<img id='" + lgd[i].Player + "' src='" + imageSrc + "' />";
 		lgdList += "</div>";
@@ -140,7 +140,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var mineskiList = "";
 	for (var i = 0; i < mineski.length; i++) {
-		var imageSrc = "img/Player/" + mineski[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + mineski[i].Player + ".png";
 		mineskiList += "<div class='playerbox'>";
 		mineskiList += "<img id='" + mineski[i].Player + "' src='" + imageSrc + "' />";
 		mineskiList += "</div>";
@@ -149,7 +149,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var nbyList = "";
 	for (var i = 0; i < nby.length; i++) {
-		var imageSrc = "img/Player/" + nby[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + nby[i].Player + ".png";
 		nbyList += "<div class='playerbox'>";
 		nbyList += "<img id='" + nby[i].Player + "' src='" + imageSrc + "' />";
 		nbyList += "</div>";
@@ -159,7 +159,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var nbList = "";
 	for (var i = 0; i < nb.length; i++) {
-		var imageSrc = "img/Player/" + nb[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + nb[i].Player + ".png";
 		nbList += "<div class='playerbox'>";
 		nbList += "<img id='" + nb[i].Player + "' src='" + imageSrc + "' />";
 		nbList += "</div>";
@@ -168,7 +168,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var ogList = "";
 	for (var i = 0; i < og.length; i++) {
-		var imageSrc = "img/Player/" + og[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + og[i].Player + ".png";
 		ogList += "<div class='playerbox'>";
 		ogList += "<img id='" + og[i].Player + "' src='" + imageSrc + "' />";
 		ogList += "</div>";
@@ -177,7 +177,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var secretList = "";
 	for (var i = 0; i < og.length; i++) {
-		var imageSrc = "img/Player/" + secret[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + secret[i].Player + ".png";
 		secretList += "<div class='playerbox'>";
 		secretList += "<img id='" + secret[i].Player + "' src='" + imageSrc + "' />";
 		secretList += "</div>";
@@ -186,7 +186,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var unknownList = "";
 	for (var i = 0; i < og.length; i++) {
-		var imageSrc = "img/Player/" + unknown[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + unknown[i].Player + ".png";
 		unknownList += "<div class='playerbox'>";
 		unknownList += "<img id='" + unknown[i].Player + "' src='" + imageSrc + "' />";
 		unknownList += "</div>";
@@ -195,7 +195,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var vegaList = "";
 	for (var i = 0; i < og.length; i++) {
-		var imageSrc = "img/Player/" + vega[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + vega[i].Player + ".png";
 		vegaList += "<div class='playerbox'>";
 		vegaList += "<img id='" + vega[i].Player + "' src='" + imageSrc + "' />";
 		vegaList += "</div>";
@@ -204,7 +204,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var vgList = "";
 	for (var i = 0; i < og.length; i++) {
-		var imageSrc = "img/Player/" + vg[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + vg[i].Player + ".png";
 		vgList += "<div class='playerbox'>";
 		vgList += "<img id='" + vg[i].Player + "' src='" + imageSrc + "' />";
 		vgList += "</div>";
@@ -213,7 +213,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 
 	var vpList = "";
 	for (var i = 0; i < og.length; i++) {
-		var imageSrc = "img/Player/" + vp[i].Player + ".jpg";
+		var imageSrc = "img/Player/" + vp[i].Player + ".png";
 		vpList += "<div class='playerbox'>";
 		vpList += "<img id='" + vp[i].Player + "' src='" + imageSrc + "' />";
 		vpList += "</div>";
@@ -236,7 +236,7 @@ d3.csv("data/PlayerTradi1.csv", function(error, data){
 					var playerPanel = "";
 					playerPanel += "<div id='" + data[i].Player + "Panel' class='panel panel-default'>";
 					playerPanel += "<div class='panel-body'>";
-					playerPanel += "<h4><img postion='relative' src='img/Player/" + data[i].Player + ".jpg' /> <span class='heroName'><strong>" + data[i].Team + "."+ data[i].Player + "</strong><span></h4>";
+					playerPanel += "<h4><img postion='relative' src='img/Player/" + data[i].Player + ".png' /> <span class='heroName'><strong>" + data[i].Team + "."+ data[i].Player + "</strong><span></h4>";
 
 					playerPanel += "<div class='well well-sm list-group'>";
 					playerPanel += "<h4 class='list-group-item-heading'>Total Number of Matches</h4>";
