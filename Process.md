@@ -1,5 +1,5 @@
 Process Book: DOTA2 Visualization - The Frankfurt Major 2015 
-=======
+===
 
 Team Member and Related Link
 ---
@@ -13,12 +13,12 @@ Team Member and Related Link
 
 Overview and Motivation
 ---
-![dota2](imgdoc/dota2.jpg)
+![dota2](img/dota2.jpg)
 ####<center>Figure 1. Dota2 poster by Valve</center>
 
 Based on [Wikipedia](https://en.wikipedia.org/wiki/Dota_2), "**Dota2** is a multiplayer online battle arena viedo game. Dota 2 is played in matches involving two teams of five players, each of which occupies a stronghold at a corner of the map. Each stronghold contains a building called the "Ancient", which the opposite team must destroy to win the match. Each player controls a character called a "Hero", and focuses on leveling up, collecting gold, acquiring items, and fighting against the other team to achieve victory."
 
-![dotamap](imgdoc/dotamap.jpg)
+![dotamap](img/dotamap.jpg)
 ####<center>Figure 2. Dota2 Map. At each end of the map are the Radiant and Dire strongholds, called Ancients. Defending the Ancients are a series of Towers, drawn as squares.</center>
 
 **Dota2** is not a simple game, actually, it is a sport which is the same as Football, basketball and baseball. To be a professional **Dota2** player, one should have the outstanding teamwork, smart strategy and fast reaction. Think about it, there are around 1 Million dota2 players in the world, only 90 players can stand on the best tournament. How did this happen? What special abilities do these 90 players have? Could we become one of them? That is very interesting to investigate.
@@ -32,7 +32,7 @@ Related Work
 Anything that inspired you, such as a paper, a web site, visualizations we discussed in class, etc.
 In terms of the related website or visulizations, I will talk about some professional dota statistics website, such as [dotabuff](http://www.dotabuff.com/),[dotamax](http://dotamax.com/) and [gosugamer](http://www.gosugamers.net/dota2). Below is one example of the visulization from gosugamer.net.
 
-![gosu](imgdoc/gosu.png)
+![gosu](img/gosu.png)
 ####<center>Figure 3. The visualization of Hero statistics from gosugamer.net</center>
 
 
@@ -51,14 +51,14 @@ General Visualization Design
 
 The main component of this visualization is that how we choose the focus of this tournament. Based on our proposal, We would like to focus on the team statistics, the player statistics and the hero statistics, just like the demonstration of below figure. Therefore, in the following sections, we will divide every question into three parts. 
 
-![mainpage](imgdoc/mainpage.png)
+![mainpage](img/mainpage.png)
 ####<center>Figure 4. Our main page design</center>
 
 Questions
 ---
 ### Team Visualization
 
-We are trying to show the teams and corresponding information that participate in the Frankfurt Tournament in the “Team” page. And It have three parts-the team logo, the bracket of all games, and the cross table of all compete, it contain the data about the score of one compete and which team survived. When click team logo, the timeline of this team will shown in the whole bracket. For the cross table, we can clearly get the information of win/loss between teams.
+We are trying to show each hero’ performance during the Frankfurt Tournament in the hero page. The specific data for each hero covered including the draft part and the detailed part. For draft part, the data contains hero’s average ban/pick phase, average ban/pick position, ban/pick times and ban/pick rate. For the detailed part, the data covers hero’s appearance times, its win rate, the average level, the average GPM (gold per minute), the average XPM (experience per minute), and the average KDA ((kills + assists) / deaths). 
 
 ### Player Visualization
 
@@ -73,7 +73,6 @@ Exploratory Data Analysis
 
 ### Team Visualization
 
-In the team part, we use bracket layout chart to show the timeline of a team, and how long did they go, and the detailed score of each competition. Each team has its own unique time line. In the cross table visualization, we found that some team has very good performance and some are very poor. So we change the team position of the cross table and make the best team in the outer rim of this chart, that’s looks better.
 
 ### Player Visualization
 
@@ -88,8 +87,6 @@ Design Evolution
 ---
 ### Team Visualization
 
-Before we use bracket layout, we tried to use grid to directly show the information of each game, because it’s very easy to realize. But after finished, we found that it hard to show how long a team went, that is, when a team out from the tournament. So we decide to change grid to bracket.
-
 ### Player Visualization
 
 At first, we want to use a bubble chart to show the comparison of the players. However, we finally made our decision to use bar chart, which is more obvious and clearer. We think the bar chart is more professional after we reviewed some sports visulization website. The scatter plot is also inspired from some statistic website. Since there are a lot players in this tournament, we think we can represent each player as a point in the visulization and easily justify which player is better. 
@@ -103,38 +100,33 @@ Implementation
 ---
 ### Team Visualization
 
-For the team visulization, we decide to use a bracket type. When we click a team logo, there will be a red timeline shown in the bracket show in this picture.
-![com](imgdoc/bracket.png)
-####<center>Figure 5. Designed bracket visulization</center>
-
-
 ### Player Visualization
 
 For the player statistics comparison, we would like to use the bar chart to compare two players. The design is inspired by the nba statistic webpage. We think this design can directly show which player is better. Like the "Traditional", "advanced" in NBA statistics terms, we also have different statistics criteria, such as "basic", "damage made" and "misc". 
-![com](imgdoc/compare.png)
-####<center>Figure 6. NBA statistic website</center>
+![com](img/compare.png)
+####<center>Figure 5. NBA statistic website</center>
 
 For the player ranking part, we would like to use the scatter plot to compare different players based on different criteria. For example, the x-axis can represent the gold earned per game for one player and the y-axis can represent the damage he made per game. In this plot, if one player can have the lower earned gold and the higher made damage, we can conclude this player is a high-rated player.
-![scatter](imgdoc/scatter.png)
-####<center>Figure 7. Scatter Plot Example</center>
+![scatter](img/scatter.png)
+####<center>Figure 6. Scatter Plot Example</center>
 
 ### Hero Visualization
 
 We use the bipartite chart to show the detailed data for each hero. The very left column contains the hero types, which is the strength hero, agility hero and the intelligence hero, and each type’s ban/pick times, which is shown by he height of the left rectangles. In the right side of chart, each hero’s ban/pick situation and its more detailed permanence will be shown when your mouse is over the specific hero row or its corresponding rectangle. 
-![bar](imgdoc/bipartitle.png)
-####<center>Figure 8. Bipartitle Example</center>
+![bar](img/bipartitle.png)
+####<center>Figure 7. Bipartitle Example</center>
 
 
 The combination of the horizontal axis at the top and the vertical 0 axis in the middle of the chart is showing how many games a hero loses and how many games a hero wins. The bar left to the vertical 0 axis represents the lose games and the bar right to the vertical 0 axis represents the win games. Each bar vertically stands for each hero, the order of which can be filtered by the hero name, the appearance times or the win rate.
-![stack](imgdoc/stackbar.png)
-####<center>Figure 9. Stackbar Example</center>
+![stack](img/stackbar.png)
+####<center>Figure 8. Stackbar Example</center>
 
 
 Evaluation
 ---
 
 ### Team Visualization
-What we have done are trying to show the detailed compete and win/loss information in the tournement. In the future, we want to improve the bracket and let it show when user click and hide when user click it again. 
+
 
 ### Player Visualization
 From the data visulization we have right now, we know that we cannot easily judge one player's performance by only one criteria. We should rank the player performance based on their role in his team. In terms of improving the visualization, we want to add a "Hall of Fame" section to see the record of this tournament. Personally I want to use a bubble chart to show these records, of course, we are trying to find a better visualization type to show them right now.  
@@ -142,106 +134,3 @@ From the data visulization we have right now, we know that we cannot easily judg
 ### Hero Visualization
 What we have done are trying to show the detailed performance of each hero in this tournament. In the future, we want to finish the comparison part,  which is trying to compare different heroes’ performance in a view. 
 
-=======
-Background and Motivation
----
-Based on [Wikipedia](https://en.wikipedia.org/wiki/Dota_2), "**Dota2** is a multiplayer online battle arena viedo game. Dota 2 is played in matches involving two teams of five players, each of which occupies a stronghold at a corner of the map. Each stronghold contains a building called the "Ancient", which the opposite team must destroy to win the match. Each player controls a character called a "Hero", and focuses on leveling up, collecting gold, acquiring items, and fighting against the other team to achieve victory."
-
-**Dota2** is not a simple game, actually, it is a sport which is the same as Football, basketball and baseball. To be a professional **Dota2** player, one should have the outstanding teamwork, smart strategy and fast reaction. Think about it, there are around 1 Million dota2 players in the world, only 90 players can stand on the best tournament. How did this happen? What special abilities do these 90 players have? Could we become one of them? That is very interesting to investigate.
-
-Which tournament should we focus? Since there are many dota2 tournament every month. **Of course**, we want to see the most recent tournament! Actually, it is still undergoing! we choose the [**2015 Frankfurt major (Nov.16th - Nov. 21st)**](http://www.thefrankfurtmajor.com/). The Frankfurt Major (or "Fall Major") will be the first event of Valve's Dota Major Championships, which will add 3 new publisher-sponsored tournaments each year in addition to The International. The Main Event will take place at Festhalle Messe, a multi-purpose concert hall in Frankfurt, Germany with a total seating capacity of over 9,800. The prize pool of the tournament provided by Valve was set to **$3,000,000 USD**.
-
-Project Objectives
----
-In terms of the objectives, first of all, we are true **dota2** fans. We played the game, we watched the game and we enjoyed the game. We want to see our favorite players statistics in this tournament like what we see in the NFL and NBA website. Secondly, I have never seen a visualization that can describe the whole information in a **dota2** tournament, especially for this undergoing tournament. Last but not the least, we would like to show **dota2** is not a easy game, it is actually involving a lot of interesting stories. The most important thing we learn during this class is that the core of data visulization is to tell the story inside the data.
-
-Data and Data Processing
----
-Since our investigated tournament is still undergoing, we cannot not get the data right now. It is very possible that we need to organize the tournament data, such as the statistics of each match, each player and each team, by ourselves. This data collection may take some time, but I think it deserves. 
-
-For the data formating, we are planning to collect the statistics of each match and format them is the following CSV style:
-
-![CSV](img/dataformat.png)
-
-In this data format, the column of "TeamID" and "PlayerID" are the primary key in these data. The remaining columns, such as "Hero", "Assists", "Kills" and "Death", can describe the performance of each player in this match. Based on these data, we can calculate a lot of useful information, an important one of them is "KDA", which is "(Kills + Assists) / Deaths" and can descirbe the general performance of one player in this match. We will investigate more features that can evaluate the power ranking of the teams, players and heroes in this tounament.
-
-#####Data references: 
-
-[ESL Website](http://www.thefrankfurtmajor.com/)
-
-[dota2 Official Website](http://blog.dota2.com/)
-
-[dotabuff](http://www.dotabuff.com/)
-
-Visualization Design
----
-
-The main component of this visualization is that how we choose the focus of this tournament. We can focus on the team statistics, the player statistics and the hero statistics. Therefore we have the following design prototypes:
-
-Design1: Team focus design.
-
-Since the tournament consists of 16 teams, we want to show each team's statistics to visualize this tournament information. We want to use the trending line chart to show the team performance; also we would like to use the error bar chart to show each team and its opponent infomation.
-
-![team](img/team.png)
-![team2](img/team2.png) 
-
-
-Design2: Player focus design.
-
-Since each player has different role in his team, we want to see each player's importance in his team. We would like to use trending line to see each player's different statistics, such as his earned gold and his KDA in each match. Also we want to use a pie chart to see each player's favourite hero in this tournament. 
-
-![player](img/player1.png)
-
-Design3: Hero focus design
-
-Hero-based design can let us see more about the insight of this tournament. We want to see which hero is overpowered and which hero is the most popular. We can use the trending line chart and bar chart to see the pick rate, ban rate, win rate and earned gold in this tournament. We can also think about more parameters to evaluate the hero power ranking in this major.
-
-![hero](img/hero1.png)
-
-
-Final Design:
-
-Since all of these three components are very important, finally we decide to combine these three major components as below.
-
-From the team side: We can visualize each team information. From each team information, we can see each player's general information, which means we can change the visualization from team side to the player side.
-
-From the player side: We can visulize each player information like above, such as his favourite heroes. Therefore, we can link the player's visulization to the heroes' visulization.
-
-From the hero side: Like what we described above, the heroes visulization is the core of this whole visulizaion, since we can change to the hero visulization from both team side and player side. 
-
-In conclusion, we want to divide this whole visualization into three parts: Team, Player and Hero.
-
-![design](img/design.jpg)
-
-
-Must-have Features
----
-For the team component:
-
-1. The visualization of each team's statistics, such as pick/ban favorite heroes and team win/loss rate.
-2. The "Road-to-the-champion" visualization of each team. 
-
-For the player component:
-
-1. The visualization of every player's statistics, such as KDA per game, earned gold per game etc.
-2. The visualization of the rank of every player based on different criteria.
-
-For the hero component:
-
-1. The visulization of every hero's statistics, such as pick/ban rate, gold per min, experinece per min, best versus and worst versus etc.
-2. The visualization of the rank of every hero based on different criteria.
-
-
-Optional Features
----
-We are considering to add another feature like "Hall of Fame" in this tournament. In this feature, we want to visulize the record of teams, players and heroes in this brilliant tournament.
-
-Project Schedule
----
-Nov 17th - Nov 21st   Writing the proposal and gathering the data
-
-Nov 22nd - Nov 28th	   Writing the framework of the whole visulization.
-
-Nov 29th - Dec 10th   Developing the must-have features of team component, player component and hero component.
-
-Dec 11th - Dec 15th   Developing optional features and making final changes.
