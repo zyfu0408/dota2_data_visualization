@@ -19,7 +19,6 @@
 
 d3.csv("data/hero.csv", function(error, data){
 	data = data.sort(compareByName);
-	//console.log(data);
 
 	var strength = [];
 	var agility = [];
@@ -106,8 +105,49 @@ d3.csv("data/hero.csv", function(error, data){
 		}
 	});
 
-// <div style='border-left:1px dotted #000;height:90%'></div>
+	// //winrate and appearance
+	// var winMax = d3.max(data.map(function(d){
+	// 	return parseInt(d.W);
+	// }));
+	// var loseMax = d3.max(data.map(function(d){
+	// 	return parseInt(d.L);
+	// }))
 
+	// // data.forEach(function(d){
+	// // 	d.Name = +d.Name;
+	// // })
+
+	// var xWinLoseScale = d3.scale.linear()
+	// 				.domain([-1 * loseMax, winMax])
+	// 				.range([0, width_1 - padding.left - padding.right]);
+
+	// var yHeroScale = d3.scale.ordinal()
+	// 				.domain(data.map(function(d){
+	// 					return d.Name;
+	// 				}))
+	// 				.rangeRoundBands([height_1 - padding.top - padding.bottom, 0], .1);
+
+	// var xWinLoseAxis = d3.svg.axis()
+	// 					.scale(xWinLoseScale)
+	// 					.orient("bottom");
+
+	// var yHeroAxis = d3.svg.axis()
+	// 					.scale(yHeroScale)
+	// 					.orient("left");
+
+	// winRateSvg
+	// 	.append("g")
+	//  		.attr("class", "axis")
+	//  		.attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+	//  		.call(yHeroAxis);
+
+ //    winRateSvg
+ //    	.append("g")
+ //       		.attr("class", "axis")
+ //       		.attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+ //       		.call(xWinLoseAxis);
+
+	//win rate vs appearance
 	var appearMax = d3.max(data.map(function(d){
 		return parseInt(d.PTimes);
 	}));
@@ -131,13 +171,6 @@ d3.csv("data/hero.csv", function(error, data){
 	var div = d3.select("body").append("div")	
     		.attr("class", "tooltip")				
     		.style("opacity", 0);
-
-	// var tip = d3.tip()
-	//   .attr('class', 'd3-tip')
-	//   .offset([-10, 0])
-	//   .html(function(d) {
-	//     return "<strong>Name:</strong> <span style='color:red'>name</span>";
-	// });
 
 	var lineRange = 5 / 56 * (width_1 - padding.left - padding.right);
 	var lineHeightRange = (height_1 - padding.top - padding.bottom) / 10;
@@ -197,7 +230,7 @@ d3.csv("data/hero.csv", function(error, data){
 				.on("mouseover", function(d) {		
 		            div.transition()		
 		                .duration(200)		
-		                .style("opacity", .9);		
+		                .style("opacity", .8);		
 		            div	.html("<img float='left' width='120' height='auto' src='img/hero/" + d.Hero + ".png' />"
 		            			+ "<br>"
 		            			+ "<p><strong>Hero: " + d.Name + "</strong></p>"
@@ -233,6 +266,7 @@ d3.csv("data/hero.csv", function(error, data){
        		.attr("transform", "translate(" + padding.left + "," + (height_1 - padding.bottom) + ")")
        		.call(xAppearAxis);
 
+    //ban/pick
     var xBpScale = d3.scale.linear()
     			.rangeRound([0, width_2 - padding_2.left - padding_2.right]);
 

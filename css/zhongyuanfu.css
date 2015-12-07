@@ -1,3 +1,81 @@
+nav {
+  position: relative;
+  top: 10px;
+}
+
+#side {
+  color: blue;
+  position: fixed;
+  top: 19%;
+  right: 2%;
+  width: 220px;
+}
+
+.container-hero {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#overlay {
+  background: rgba(0,0,0,0.8);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.overlayContent {
+  color: black;
+}
+
+#winlose {
+  padding-top: 4%;
+}
+
+#winloseTitle {
+  text-align: center;
+}
+
+#heroPanel {
+  margin-top: 8%;
+  padding-left: 3%;
+}
+
+.panel-body {
+  background: black;
+}
+
+.well {
+  background: lightgrey;
+}
+
+#winrate {
+  padding-top: 5%;
+}
+
+#winrateTitle {
+  text-align: center;
+}
+
+#closeIcon {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 50px;
+  height: auto;
+}
+
+#closeIcon:hover {
+  
+}
+
+#draftTitle {
+  position: relative;
+  left: 365px;
+}
+
 .herobox {
 	margin: 3px;
 	display: inline-block;
@@ -28,34 +106,21 @@ img {
   height: auto;
 }
 
-#herodata {
-	margin-top: 30px;
-	padding-top: 15;
-	padding-bottom: 15;
-}
-
 #playerdata {
   margin-top: 60px;
   padding-top: 30;
   padding-bottom: 30;
 }
 
-#winRateChart {
-	max-width: 86%;
-	height: auto;
-	margin-left: 100;
-
-}
-
-#bpChart {
-	max-width: 86%;
-	height: auto;
-}
-
-.axis path,
-.axis line {
+.y.axis path {
   fill: none;
-  stroke: black;
+  stroke: white;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  fill: none;
+  stroke: white;
   shape-rendering: crispEdges;
 }
 
@@ -64,68 +129,28 @@ img {
 	font-size: 11px;
 }
 
-.d3-tip {
-  line-height: 1;
-  font-weight: bold;
-  padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border-radius: 2px;
-}
-
-/* Creates a small triangle extender for the tooltip */
-.d3-tip:after {
-  box-sizing: border-box;
-  display: inline;
-  font-size: 10px;
-  width: 100%;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.8);
-  content: "\25BC";
-  position: absolute;
-  text-align: center;
-}
-
-/* Style northward tooltips differently */
-.d3-tip.n:after {
-  margin: -1px 0 0 0;
-  top: 100%;
-  left: 0;
-}
-
 div.tooltip {	
-    position: absolute;			
-    text-align: center;			
-    width: 150px;					
-    height: 165px;					
-    padding: auto;				
+    position: absolute;		
+    text-align: center;		
+    padding-bottom: 12px;	
+    padding-top: 15px;
+    padding-left: 12px;
+    padding-right: 12px;			
     font: 12px sans-serif;		
-    background: lightsteelblue;	
+    background: #aec7e8;	
     border: 0px;		
-    border-radius: 5px;			
+    border-radius: 2px;			
     pointer-events: none;			
 }
 
-#bp {
-	position: relative;
-	left: 350px;
-}
-
-#win {
-	position: relative;
-	left: 260px;
-}
-
-#heropanel {
-	position: relative;
-	left: 50px;
-}
-
-.heroName {
-	position: relative;
-	left: 11px;
-}
-
-.panel {
-	padding: 4px;
+div.selectedTooltip {
+    position: fixed;   
+    text-align: center;   
+    padding-bottom: 12px; 
+    padding-top: 15px;      
+    font: 12px sans-serif;    
+    background: white;  
+    border: 0px;    
+    border-radius: 2px;     
+    pointer-events: none;   
 }

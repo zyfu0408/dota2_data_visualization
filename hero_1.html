@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Heros</title>
+
+    <!-- AngularJS -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
+    </script>
+
+    <!-- JQuery -->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- D3.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="css/zhongyuanfu.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <nav>
+      <div class="container">
+        <div class="header clearfix">
+            <ul class="nav nav-pills pull-right">
+              <li role="presentation"><a href="index.html">Home</a></li>
+              <li role="presentation"><a href="team.html">Teams</a></li>
+              <li role="presentation"><a href="player.html">Players</a></li>
+              <li role="presentation" class="active"><a href="hero.html">Heros</a></li>
+            </ul>
+          <h3 class="text-muted">Data Visualization for Dota2</h3>
+        </div>
+      </div>
+    </nav>
+
+    <div id="side" class="list-group">
+      <a href="#" class="list-group-item">top of the page</a>
+      <a href="#first" class="list-group-item">Hero List</a>
+      <a href="#winrate" class="list-group-item">Win Rate VS Appearances</a>
+      <a href="#draft" class="list-group-item">Draft Statistics</a>
+    </div>
+
+    <div class="container">
+
+      <div id="first" class="row container-hero">
+        <div class="col-md-10">
+          <p><img class="herotype" src="img/dota_icon/strength.png" /> <kbd>Strength</kdb></p>
+          <div class="herolist strength"></div>
+        </div>
+
+      </div>
+
+      <div class="row container-hero">
+        <div class="col-md-10">
+          <p><img class="herotype" src="img/dota_icon/agility.png" /> <kbd>Agility</kdb></p>
+          <div class="herolist agility"></div>
+        </div>
+
+      </div>
+
+      <div class="row container-hero">
+        <div class="col-md-10">
+          <p><img class="herotype" src="img/dota_icon/intelligence.png" /> <kbd>Intelligence</kdb></p>
+          <div class="herolist intelligence"></div>
+        </div>
+
+      </div>
+
+<!--       <div id="winrate" class="row container-hero">
+        <div class="col-md-10">
+              <h3 id="winrateText">WinRate</h3>
+            <div>
+              <h1 id="winrateTitle">Win Rate VS Appearances</h1>
+              <div id="winrateContent"></div>
+              <h3 id="winrateAppearances">Appearances</h3>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div id="draft" class="row container-hero">
+        <div class="col-md-10">
+          <h1 id="draftTitle">Draft Statistics</h1>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+
+      //winrate
+      
+
+      function drawWinRateSvg() {
+        winrateSvg = d3.select("#winrateContent")
+          .append("svg")
+          .attr("class", "MyWinRateSvg")
+          .attr("width", width_winrate)
+          .attr("height", height_winrate);
+      }
+
+    </script>
+    <script src="js/hero_1.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
