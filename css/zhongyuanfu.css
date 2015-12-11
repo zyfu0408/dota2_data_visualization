@@ -71,11 +71,6 @@ nav {
   
 }
 
-#draftTitle {
-  position: relative;
-  left: 365px;
-}
-
 .herobox {
 	margin: 3px;
 	display: inline-block;
@@ -128,6 +123,22 @@ img {
 	font-family: sans-serif;
 	font-size: 11px;
 }
+
+.divergingX.axis,
+.divergingY.axis {
+  font: 7px sans-serif;
+}
+
+.divergingX.axis path,
+.divergingY.axis path,
+.divergingX.axis line,
+.divergingY.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
 
 div.tooltip {	
     position: absolute;		

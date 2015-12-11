@@ -47,7 +47,6 @@
     <div id="side" class="list-group">
       <a href="#" class="list-group-item">top of the page</a>
       <a href="#first" class="list-group-item">Hero List</a>
-      <a href="#winrate" class="list-group-item">Win Rate VS Appearances</a>
       <a href="#draft" class="list-group-item">Draft Statistics</a>
     </div>
 
@@ -58,7 +57,6 @@
           <p><img class="herotype" src="img/dota_icon/strength.png" /> <kbd>Strength</kdb></p>
           <div class="herolist strength"></div>
         </div>
-
       </div>
 
       <div class="row container-hero">
@@ -66,7 +64,6 @@
           <p><img class="herotype" src="img/dota_icon/agility.png" /> <kbd>Agility</kdb></p>
           <div class="herolist agility"></div>
         </div>
-
       </div>
 
       <div class="row container-hero">
@@ -74,24 +71,32 @@
           <p><img class="herotype" src="img/dota_icon/intelligence.png" /> <kbd>Intelligence</kdb></p>
           <div class="herolist intelligence"></div>
         </div>
-
       </div>
 
-<!--       <div id="winrate" class="row container-hero">
+      <div class="row container-hero">
         <div class="col-md-10">
-              <h3 id="winrateText">WinRate</h3>
-            <div>
-              <h1 id="winrateTitle">Win Rate VS Appearances</h1>
-              <div id="winrateContent"></div>
-              <h3 id="winrateAppearances">Appearances</h3>
+          <h1 align="center">Draft Statistics</h1>
+          <br>
+          <div id="draft" class="row">
+            <div class="col-md-6">
+              <form class="form-inline" role="form">
+                <select width="15px" id="heroType" onchange="chooseHeroType()">
+                  <option value="strength">strength</option>
+                  <option value="agility">agility</option>
+                  <option value="intelligence">intelligence</option>
+                </select>
+                &nbsp;&nbsp;&nbsp;&nbsp;Order by: &nbsp;&nbsp;
+                <form id="orderBy" class="form" role="form">
+                  <input type="radio" name="orderBy" value="heroname" checked onchange="sortHero()"> Hero Name
+                  <input type="radio" name="orderBy" value="bptimes" onchange="sortHero()"> Ban/Pick Times
+                </form>
+              </from>
+              <div id="diverging"></div>
+            </div>
+            <div class="col-md-6">
+              <div id="bpchart"></div>
             </div>
           </div>
-        </div>
-      </div> -->
-
-      <div id="draft" class="row container-hero">
-        <div class="col-md-10">
-          <h1 id="draftTitle">Draft Statistics</h1>
         </div>
       </div>
 
@@ -99,16 +104,7 @@
 
     <script>
 
-      //winrate
-      
 
-      function drawWinRateSvg() {
-        winrateSvg = d3.select("#winrateContent")
-          .append("svg")
-          .attr("class", "MyWinRateSvg")
-          .attr("width", width_winrate)
-          .attr("height", height_winrate);
-      }
 
     </script>
     <script src="js/hero_1.js"></script>

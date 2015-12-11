@@ -24,8 +24,279 @@ d3.csv("data/hero.csv", function(error, data){
 	drawHeroPanel();
 	drawWinLosePie();
 	drawWinRateChart();
-
 });
+
+var bpData = [];
+var bpStrength = [];
+var bpAgility = [];
+var bpIntelligence = [];
+
+d3.csv("data/heroBp.csv", function(error, data){
+
+	for (var i = 0; i < data.length; i++) {
+		if (data[i].HeroType === "S") {
+			bpStrength.push(data[i]);
+		} else if (data[i].HeroType === "A") {
+			bpAgility.push(data[i]);
+		} else {
+			bpIntelligence.push(data[i]);
+		}
+		bpData.push(data[i]);
+	}
+	getBpCount();
+	drawBPChart();
+	drawDiverging(bpStrength);
+});
+
+function getBpCount() {
+	strengthCount = d3.sum(bpStrength.map(function(d){
+		return parseInt(d.BPTimes);
+	}));
+	agilityCount = d3.sum(bpAgility.map(function(d){
+		return parseInt(d.BPTimes);
+	}));
+	intelligenceCount = d3.sum(bpIntelligence.map(function(d){
+		return parseInt(d.BPTimes);
+	}));
+
+	heroTypeArray = [strengthCount, agilityCount, intelligenceCount];
+	max = d3.max(heroTypeArray);
+	sum = d3.sum(heroTypeArray);
+
+	console.log(heroTypeArray);
+	console.log(d3.sum(heroTypeArray));
+}
+
+function sortHero() {
+	if ($('input[name="orderBy"]:checked').val() === 'heroname') {
+		
+	} else {
+
+	}
+}
+
+// function sort() {
+// 	var sortTimeout = setTimeout(function(){
+// 		d3.select("input").property("checked", true).each(change);
+// 	})
+// }
+
+// function change() {
+// 	clearTimeout(sortTimeout);
+
+// 	var y0 = y.domain(data.sort(this.checked
+// 			? function(a, b) {
+// 				return b.BPTimes - a.BPTimes;
+// 			}
+// 			: function(a, b) {
+// 				return d3.ascending(a.Name, b.Name);
+// 			})
+// 			.map(function(d){
+// 				return d.Name;
+// 			}))
+// 			.copy();
+
+// 	svg.selectAll(".")
+// }
+
+function chooseHeroType() {
+
+	var type = document.getElementById("heroType");
+
+	if (type.value === "strength") {
+		drawDiverging(bpStrength);
+	} else if (type.value === "agility") {
+		drawDiverging(bpAgility);
+	} else if (type.value === "intelligence") {
+		drawDiverging(bpIntelligence);
+	}
+}
+
+function drawBPChart() {
+	var selection = d3.select("#bpchart");
+
+	width_bpchart = selection[0][0].clientWidth * 0.96;
+	height_bpchart = width_bpchart * 1.6;
+
+	padding_bpchart = {
+    	top: height_bpchart / 20,
+    	right: width_bpchart / 40,
+    	bottom: height_bpchart / 40,
+    	left: height_bpchart / 20
+  	};
+
+  	bpchartSvg = d3.select("#bpchart")
+		.append("svg")
+		.attr("width", width_bpchart)
+		.attr("height", height_bpchart);
+
+	totalHeight = height_bpchart - padding_bpchart.top - padding_bpchart.bottom;
+	totalWidth = width_bpchart - padding_bpchart.left - padding_bpchart.right;
+
+	rectTotalHeight = totalHeight * 0.85;
+
+	rectPadding = 6;
+
+	bpY = d3.scale.linear()
+		.domain([0, d3.sum(heroTypeArray)])
+		.rangeRound([rectTotalHeight - 2 * rectPadding, 0]);
+	
+	bpColor = ["#d62728", "#2ca02c", "#9edae5"];
+
+	bpchartSvg.selectAll(".HeroTypeRects")
+		.data(heroTypeArray)
+		.enter()
+		.append("rect")
+			.attr("class", "HeroTypeRects")
+			.attr("id", function(d, i){
+				if (i === 0) {
+					return "strengthType"
+				} else if (i === 1) {
+					return "agilityType"
+				} else {
+					return "intelligenceType"
+				}
+			})
+			.attr("transform", "translate(" + totalWidth * 1/3 + "," + totalHeight * 0.15 + ")")
+			.attr("x", 0)
+			.attr("width", totalWidth * 1/4 * 1/3)
+			.attr("height", function(d, i){
+				return rectTotalHeight * heroTypeArray[i] / sum;
+			})
+			.attr("y", function(d, i){
+				if (i === 0) {
+					return 0;
+				} else if (i === 1) {
+					return rectPadding + rectTotalHeight * heroTypeArray[0] / sum;
+				} else if (i === 2) {
+					return rectPadding * 2 + rectTotalHeight * (heroTypeArray[0] + heroTypeArray[1]) / sum;
+				}
+			})
+			.attr("fill", function(d, i){
+				return bpColor[i];
+			})
+			.on("mouseover", function(d){
+				if ($(this).attr("id") === "strengthType") {
+					console.log(1);
+				} else if ($(this).attr("id") === "agilityType") {
+					console.log(2); 
+				} else if ($(this).attr("id") === "intelligenceType") {
+					console.log(3);
+				}
+			})
+}
+
+function drawHeroRect(bpdataset) {
+	bpchartSvg.selectAll(".HeroRects")
+		.data(bpdataset)
+		.enter()
+		.append("rect")
+			.attr("class", "HeroType")
+			.attr("id", function(d){
+				return d.Hero + "BpRect"
+			})
+			.attr("transform", "translate(" + totalWidth * 2/3 + "," + totalHeight * 0.15 + ")")
+			.attr("x", 0)
+			.attr("width", totalWidth * 1/4 * 1/3 * 2/3)
+			// .attr("height", )
+}
+
+function drawDiverging(dataset) {
+	$("#diverging").empty();
+
+	var selection = d3.select("#diverging");
+
+	width_diverging = selection[0][0].clientWidth * 0.96;
+	height_diverging = width_diverging * 1.4;
+
+	padding_diverging = {
+    	top: height_diverging / 10,
+    	right: width_diverging / 40,
+    	bottom: height_diverging / 20,
+    	left: width_diverging / 4
+  	};
+
+  	divergingSvg = d3.select("#diverging")
+  			.append("svg")
+  			.attr("width", width_diverging)
+  			.attr("height", height_diverging);
+
+  	bmax = d3.max(bpData.map(function(d){
+		return parseInt(d.BTimes);
+	}));
+
+	pmax = d3.max(bpData.map(function(d){
+		return parseInt(d.PTimes);
+	}));
+
+	var xDiverging = d3.scale.linear()
+			.domain([-bmax, pmax])
+			.rangeRound([0, width_diverging - padding_diverging.left - padding_diverging.right]);
+
+	var yDiverging = d3.scale.ordinal()
+			.domain(dataset.map(function(d){
+				return d.Name;
+			}))
+			.rangeRoundBands([0, height_diverging - padding_diverging.top - padding_diverging.bottom], .1);
+
+	var xDivergingAxis = d3.svg.axis()
+			.scale(xDiverging)
+			.orient("top");
+
+	var yDivergingAxis = d3.svg.axis()
+			.scale(yDiverging)
+			.orient("left");
+
+	var divergingColor = ["#843c39", "#e7ba52"];
+
+	divergingSvg.append("g")
+			.attr("class", "divergingX axis")
+			.attr("transform", "translate(" + padding_diverging.left + "," + padding_diverging.top + ")")
+			.call(xDivergingAxis);
+
+	divergingSvg.append("g")
+			.attr("class", "divergingY axis")
+			.attr("transform", "translate(" + padding_diverging.left + "," + padding_diverging.top + ")")
+			.call(yDivergingAxis);
+
+	divergingSvg.selectAll(".DivergingRects.P")
+		.data(dataset)
+		.enter()
+		.append("rect")
+			.attr("class", function(d){
+				return d.Hero + "Rect DivergingRects P"
+			})
+			.attr("transform", "translate(" + padding_diverging.left + "," + padding_diverging.top + ")")
+			.attr("width", function(d){
+				return xDiverging(d.PTimes - bmax);
+			})
+			.attr("height", yDiverging.rangeBand())
+			.attr("x", xDiverging(0))
+			.attr("y", function(d){
+				return yDiverging(d.Name);
+			})
+			.attr("fill", divergingColor[1]);
+
+	divergingSvg.selectAll(".DivergingRects.B")
+		.data(dataset)
+		.enter()
+		.append("rect")
+			.attr("class", function(d){
+				return d.Hero + "Rect DivergingRects B"
+			})
+			.attr("transform", "translate(" + padding_diverging.left + "," + padding_diverging.top + ")")
+			.attr("width", function(d){
+				return xDiverging(0) - xDiverging(-d.BTimes);
+			})
+			.attr("height", yDiverging.rangeBand())
+			.attr("x", function(d){
+				return xDiverging(-d.BTimes);
+			})
+			.attr("y", function(d){
+				return yDiverging(d.Name);
+			})
+			.attr("fill", divergingColor[0]);	
+}
 
 function drawHero() {
 
@@ -607,25 +878,6 @@ function drawWinRateChart() {
 		drawPoints(id);
 
 		drawSelectedPoint(selectedX, selectedY, id, name, winPoint, losePoint);
-
-					// .on("mouseover", function(d) {		
-			  //           div.transition()		
-			  //               .duration(200)		
-			  //               .style("opacity", .9);		
-			  //           div.html("<img float='left' width='120' height='auto' src='img/hero/" + d.Hero + ".png' />"
-			  //           			+ "<br>"
-			  //           			+ "<p><strong>Hero: " + d.Name + "</strong></p>"
-			  //           			+ "<p><strong>Appearance: " + d.Games + "</strong></p>"
-			  //           			+ "<p><strong>Win: " + d.W + "</strong></p>"
-			  //           			+ "<p><strong>Lose: " + d.L + "</strong></p>"
-			  //           			+ "<p><strong>Win Rate: " + (parseFloat(d.WinRate) * 100).toFixed(1) + "%</strong></p>"
-			  //           		)
-		   //      	})
-			  //       .on("mouseout", function(d) {		
-	    //         		div.transition()		
-	    //             		.duration(500)		
-	    //             		.style("opacity", 0);	
-	    //     		});	
     	
 	})
 
