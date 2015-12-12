@@ -1,0 +1,108 @@
+{
+	"name": "hero",
+	"children": [
+		{
+			"name": "agility",
+			"children":[
+				{"hero": "Anti Mage", "name": "antimage", "size": 27, "rate": 27.3, "best": ["spectre", "phoenix", "medusa", "abaddon"], "worst": ["life_stealer", "clinkz", "meepo", "shadow_demon"]},
+				{"hero": "Bounty Hunter", "name": "bounty_hunter", "size": 23, "rate": 23.2, "best": ["nevermore", "undying", "doom_bringer", "silencer"], "worst": ["meepo", "storm_spirit", "naga_siren", "phantom_lancer"]},
+				{"hero": "Broodmother", "name": "broodmother", "size": 47, "rate": 47.5, "best": ["drow_ranger", "medusa", "huskar", "luna"], "worst": ["earthshaker", "axe", "dark_seer", "slardar"]},
+				{"hero": "Clinkz", "name": "clinkz", "size": 3, "rate": 3, "best": ["phoenix", "ember_spirit", "juggernaut", "undying"], "worst": ["phantom_lancer", "broodmother", "chaos_knight", "bounty_hunter"]},
+				{"hero": "Drow Ranger", "name": "drow_ranger", "size": 7, "rate": 7.1, "best": ["alchemist", "antimage", "doom_bringer", "juggernaut"], "worst": ["broodmother", "phantom_lancer", "slark", "axe"]},
+				{"hero": "Ember Spirit", "name": "ember_spirit", "size": 63, "rate": 63.6, "best": ["meepo", "phantom_lancer", "undying", "chaos_knight"], "worst": ["storm_spirit", "huskar", "clinkz", "wisp"]},
+				{"hero": "Gyrocopter", "name": "gyrocopter", "size": 80, "rate": 80.8, "best": ["undying", "dazzle", "beastmaster", "axe"], "worst": ["juggernaut", "life_stealer", "magnataur", "tinker"]},
+				{"hero": "Juggernaut", "name": "juggernaut", "size": 41, "rate": 41.4, "best": ["spectre", "phoenix", "crystal_maiden", "viper"], "worst": ["clinkz", "broodmother", "lone_druid", "wisp"]},
+				{"hero": "Lone Druid", "name": "lone_druid", "size": 1, "rate": 1, "best": ["templar_assassin", "silencer", "antimage", "clinkz"], "worst": ["beastmaster", "bristleback", "slark", "crystal_maiden"]},
+				{"hero": "Luna", "name": "luna", "size": 4, "rate": 4, "best": ["wisp", "undying", "doom_bringer", "alchemist"], "worst": ["beastmaster", "meepo", "phantom_lancer", "slark"]},
+				{"hero": "Medusa", "name": "medusa", "size": 1, "rate": 1, "best": ["chaos_knight", "sven", "undying", "visage"], "worst": ["broodmother", "antimage", "lich", "furion"]},
+				{"hero": "Meepo", "name": "meepo", "size": 12, "rate": 12.1, "best": ["antimage", "spirit_breaker", "night_stalker", "bounty_hunter"], "worst": ["ember_spirit", "shredder", "earthshaker", "sven"]},
+				{"hero": "Morphling", "name": "morphling", "size": 2, "rate": 2, "best": ["phoenix", "alchemist", "shadow_demon", "tinker"], "worst": ["beastmaster", "huskar", "furion", "chen"]},
+				{"hero": "Naga Siren", "name": "naga_siren", "size": 1, "rate": 1, "best": ["lycan", "templar_assassin", "tinker", "bane"], "worst": ["dark_seer", "ember_spirit", "shredder", "tiny"]},
+				{"hero": "Shadow Fiend", "name": "nevermore", "size": 94, "rate": 94.9, "best": ["spectre", "abaddon", "undying", "dazzle"], "worst": ["morphling", "templar_assassin", "wisp", "bounty_hunter"]},
+				{"hero": "Nyx Assassin", "name": "nyx_assassin", "size": 12, "rate": 12.1, "best": ["invoker", "medusa", "tinker", "lina"], "worst": ["visage", "dragon_knight", "huskar", "life_stealer"]},
+				{"hero": "Phantom Lancer", "name": "phantom_lancer", "size": 22, "rate": 22.2, "best": ["skeleton_king", "ursa", "viper", "vengefulspirit"], "worst": ["ember_spirit", "shredder", "sand_king", "earthshaker"]},
+				{"hero": "Razor", "name": "razor", "size": 13, "rate": 13.1, "best": ["tidehunter", "spirit_breaker", "slardar", "queenofpain"], "worst": ["meepo", "dark_seer", "lycan", "naga_siren"]},
+				{"hero": "Slark", "name": "slark", "size": 7, "rate": 7.1, "best": ["drow_ranger", "abaddon", "lich", "luna"], "worst": ["antimage", "storm_spirit", "sand_king", "shredder"]},
+				{"hero": "Spectre", "name": "spectre", "size": 5, "rate": 5.1, "best": ["windrunner", "earthshaker", "shadow_shaman", "drow_ranger"], "worst": ["undying", "chen", "treant", "alchemist"]},
+				{"hero": "Templar Assassin", "name": "templar_assassin", "size": 32, "rate": 32.3, "best": ["nevermore", "life_stealer", "silencer", "tusk"], "worst": ["batrider", "dark_seer", "phantom_lancer", "naga_siren"]},
+				{"hero": "Ursa", "name": "ursa", "size": 1, "rate": 1, "best":["juggernaut", "spectre", "lina", "morphling"], "worst": ["phantom_lancer", "broodmother", "death_prophet", "lion"]},
+				{"hero": "Vengeful Spirit", "name": "vengefulspirit", "size": 12, "rate": 12.1, "best": ["templar_assassin", "slardar", "axe", "ursa"], "worst": ["huskar", "furion", "meepo", "queenofpain"]},
+				{"hero": "Venomancer", "name": "venomancer", "size": 3, "rate": 3, "best": ["rubick", "shadow_shaman", "magnataur", "pugna"], "worst": ["gyrocopter", "invoker", "jakiro", "lion"]},
+				{"hero": "Viper", "name": "viper", "size": 27, "rate": 27.3, "best": ["alchemist", "tiny", "tidehunter", "batrider"], "worst": ["meepo", "phantom_lancer", "chaos_knight", "broodmother"]},
+				{"hero": "Weaver", "name": "weaver", "size": 2, "rate": 2, "best": ["visage", "undying", "pugna", "life_stealer"], "worst": ["beastmaster", "dragon_knight", "doom_bringer", "invoker"]}
+			]
+		},
+
+		{
+			"name": "intelligence",
+			"children":[
+				{"hero": "Ancient Apparition", "name": "ancient_apparition", "size": 59, "rate": 59.6, "best": ["dazzle", "huskar", "bristleback", "axe"], "worst": ["antimage", "lycan", "beastmaster", "clinkz"]},
+				{"hero": "Bane", "name": "bane", "size": 58, "rate": 58.6, "best": ["lich", "windrunner", "phoenix", "ancient_apparition"], "worst": ["chaos_knight", "naga_siren", "sand_king", "leshrac"]},
+				{"hero": "Batrider", "name": "batrider", "size": 3, "rate": 3, "best": ["templar_assassin", "broodmother", "night_stalker", "tinker"], "worst": ["huskar", "viper", "weaver", "juggernaut"]},
+				{"hero": "Chen", "name": "chen", "size": 3, "rate": 3, "best": ["spectre", "rattletrap", "batrider", "abaddon"], "worst": ["phantom_lancer", "shadow_demon", "slardar", "leshrac"]},
+				{"hero": "Crystal Maiden", "name": "crystal_maiden", "size": 2, "rate": 2, "best": ["ursa", "tusk", "chaos_knight", "templar_assassin"], "worst":["rubick", "magnataur", "rattletrap", "skywrath_mage"]},
+				{"hero": "Dark Seer", "name": "dark_seer", "size": 81, "rate": 81.8, "best": ["templar_assassin", "phantom_lancer", "broodmother", "beastmaster"], "worst": ["ember_spirit", "antimage", "huskar", "shredder"]},
+				{"hero": "Dazzle", "name": "dazzle", "size": 73, "rate": 73.7, "best": ["abaddon", "bristleback", "life_stealer", "spectre"], "worst": ["ancient_apparition", "axe", "doom_bringer", "gyrocopter"]},
+				{"hero": "Death Prophet", "name": "death_prophet", "size": 2, "rate": 2, "best": ["tidehunter", "vengefulspirit", "windrunner", "shredder"], "worst": ["broodmother", "furion", "meepo", "rattletrap"]},
+				{"hero": "Disruptor", "name": "disruptor", "size": 20, "rate": 20.2, "best": ["meepo", "slark", "treant", "axe"], "worst": ["clinkz", "huskar", "pugna", "wisp"]},
+				{"hero": "Natures Prophet", "name": "furion", "size": 5, "rate": 5.1, "best": ["wisp", "abaddon", "medusa", "venomancer"], "worst": ["spectre", "spirit_breaker", "storm_spirit", "meepo"]},
+				{"hero": "Invoker", "name": "invoker", "size": 9, "rate": 9.1, "best": ["skeleton_king", "abaddon", "medusa", "lich"], "worst": ["chen", "clinkz", "nyx_assassin", "visage"]},
+				{"hero": "Jakiro", "name": "jakiro", "size": 3, "rate": 3, "best": ["meepo", "treant", "lycan", "chaos_knight"], "worst": ["ancient_apparition", "juggernaut", "rubick", "visage"]},
+				{"hero": "Leshrac", "name": "leshrac", "size": 4, "rate": 4, "best": ["phantom_lancer", "chaos_knight", "meepo", "naga_siren"], "worst": ["juggernaut", "pugna", "antimage", "huskar"]},
+				{"hero": "Lich", "name": "lich", "size": 21, "rate": 21.2, "best": ["medusa", "luna", "meepo", "chaos_knight"], "worst": ["antimage", "furion", "huskar", "bane"]},
+				{"hero": "Lina", "name": "lina", "size": 41, "rate": 41.4, "best": ["abaddon", "dark_seer", "lich", "ursa"], "worst": ["nyx_assassin", "pugna", "storm_spirit", "templar_assassin"]},
+				{"hero": "Lion", "name": "lion", "size": 7, "rate": 7.1, "best": ["ursa", "lich", "luna", "skeleton_king"], "worst": ["visage", "pugna", "shadow_demon", "spectre"]},
+				{"hero": "Ogre Magi", "name": "ogre_magi", "size": 1, "rate": 1, "best": ["brewmaster", "dark_seer", "tiny", "ursa"], "worst": ["chaos_knight", "huskar", "phantom_lancer", "meepo"]},
+				{"hero": "Pugna", "name": "pugna", "size": 1, "rate": 1, "best": ["skywrath_mage", "queenofpain", "winter_wyvern", "shredder"], "worst": ["drow_ranger", "antimage", "huskar", "meepo"]},
+				{"hero": "Queen of Pain", "name": "queenofpain", "size": 83, "rate": 83.8, "best": ["slark", "undying", "vengefulspirit", "jakiro"], "worst": ["pugna", "nyx_assassin", "nevermore", "luna"]},
+				{"hero": "Rubick", "name": "rubick", "size": 17, "rate": 17.2, "best": ["jakiro", "crystal_maiden", "earthshaker", "lich"], "worst": ["clinkz", "lycan", "templar_assassin", "ursa"]},
+				{"hero": "Shadow Demon", "name": "shadow_demon", "size": 3, "rate": 3, "best": ["chen", "alchemist", "ancient_apparition", "rattletrap"], "worst": ["chaos_knight", "phantom_lancer", "shredder", "sand_king"]},
+				{"hero": "Shadow Shaman", "name": "shadow_shaman", "size": 12, "rate": 12.1, "best": ["spirit_breaker", "naga_siren", "morphling", "bounty_hunter"], "worst": ["gyrocopter", "bristleback", "silencer", "razor"]},
+				{"hero": "Silencer", "name": "silencer", "size": 4, "rate": 4, "best": ["phoenix", "witch_doctor", "sand_king", "shredder"], "worst": ["broodmother", "lone_druid", "wisp", "lycan"]},
+				{"hero": "Skywrath Mage", "name": "skywrath_mage", "size": 5, "rate": 5.1, "best": ["visage", "phoenix", "shredder", "ember_spirit"], "worst": ["night_stalker", "skeleton_king", "pugna", "lycan"]},
+				{"hero": "Storm Spirit", "name": "storm_spirit", "size": 1, "rate": 1, "best": ["ember_spirit", "bounty_hunter", "tinker", "slark"], "worst": ["antimage", "dazzle", "meepo", "silencer"]},
+				{"hero": "Tinker", "name": "tinker", "size": 1, "rate": 1, "best": ["winter_wyvern", "venomancer", "nevermore", "slardar"], "worst": ["storm_spirit", "antimage", "naga_siren", "nyx_assassin"]},
+				{"hero": "Visage", "name": "visage", "size": 22, "rate": 22.2, "best": ["winter_wyvern", "rattletrap", "nyx_assassin", "jakiro"], "worst": ["axe", "lycan", "weaver", "venomancer"]},
+				{"hero": "Windranger", "name": "windrunner", "size": 53, "rate": 53.5, "best": ["sven", "undying", "ursa", "phoenix"], "worst": ["queenofpain", "tinker", "morphling", "lone_druid"]},
+				{"hero": "Winter Wyvern", "name": "winter_wyvern", "size": 85, "rate": 85.9, "best": ["vengefulspirit", "meepo", "life_stealer", "broodmother"], "worst": ["wisp", "pugna", "shredder", "undying"]},
+				{"hero": "Witch Doctor", "name": "witch_doctor", "size": 8, "rate": 8.1, "best": ["axe", "crystal_maiden", "viper", "venomancer"], "worst": ["clinkz", "broodmother", "furion", "visage"]}
+			]
+		},
+
+		{
+			"name": "strength",
+			"children":[
+				{"hero": "Abaddon", "name": "abaddon", "size": 3, "rate": 3, "best": ["silencer", "life_stealer", "disruptor", "venomancer"], "worst": ["antimage", "chen", "furion", "shadow_demon"]},
+				{"hero": "Alchemist", "name": "alchemist", "size": 25, "rate": 25.3, "best": ["earthshaker", "spectre", "medusa", "phoenix"], "worst": ["morphling", "lone_druid", "clinkz", "life_stealer"]},
+				{"hero": "Axe", "name": "axe", "size": 2, "rate": 2, "best": ["broodmother", "dazzle", "phantom_lancer", "visage"], "worst": ["ancient_apparition", "shredder", "venomancer", "gyrocopter"]},
+				{"hero": "Beastmaster", "name": "beastmaster", "size": 27, "rate": 27.3, "best": ["ancient_apparition", "wisp", "weaver", "morphling"], "worst": ["tidehunter", "bristleback", "dark_seer", "earthshaker"]},
+				{"hero": "Brewmaster", "name": "brewmaster", "size": 8, "rate": 8.1, "best": ["visage", "templar_assassin", "drow_ranger", "furion"], "worst": ["undying", "sand_king", "rubick", "shredder"]},
+				{"hero": "Bristleback", "name": "bristleback", "size": 16, "rate": 16.2, "best": ["chaos_knight", "beastmaster", "lycan", "tusk"], "worst": ["slardar", "shredder", "ancient_apparition", "dazzle"]},
+				{"hero": "Chaos Knight", "name": "chaos_knight", "size": 1, "rate": 1, "best": ["bane", "doom_bringer", "viper", "skywrath_mage"], "worst": ["sand_king", "sven", "ember_spirit", "earthshaker"]},
+				{"hero": "Doom", "name": "doom_bringer", "size": 93, "rate": 93.9, "best": ["dazzle", "axe", "abaddon", "ember_spirit"], "worst": ["alchemist", "bounty_hunter", "meepo", "drow_ranger"]},
+				{"hero": "Dragon Knight", "name": "dragon_knight", "size": 14, "rate": 14.1, "best": ["templar_assassin", "slardar", "queenofpain", "nyx_assassin"], "worst": ["undying", "shredder", "ancient_apparition", "dark_seer"]},
+				{"hero": "Earthshaker", "name": "earthshaker", "size": 35, "rate": 35.4, "best": ["chaos_knight", "abaddon", "crystal_maiden", "phantom_lancer"], "worst": ["rubick", "rattletrap", "tinker", "alchemist"]},
+				{"hero": "Huskar", "name": "huskar", "size": 37, "rate": 37.4, "best": ["ember_spirit", "spectre", "rattletrap", "venomancer"], "worst": ["ancient_apparition", "chaos_knight", "broodmother", "phantom_lancer"]},
+				{"hero": "Lifestealer", "name": "life_stealer", "size": 1, "rate": 1, "best": ["alchemist", "dragon_knight", "spectre", "tiny"], "worst": ["weaver", "slark", "templar_assassin", "broodmother"]},
+				{"hero": "Lycan", "name": "lycan", "size": 8, "rate": 8.1, "best": ["visage", "silencer", "ancient_apparition", "juggernaut"], "worst": ["axe", "naga_siren", "shredder", "slardar"]},
+				{"hero": "Magnus", "name": "magnataur", "size": 8, "rate": 8.1, "best": ["phantom_lancer", "crystal_maiden", "chaos_knight", "meepo"], "worst": ["death_prophet", "juggernaut", "alchemist", "huskar"]},
+				{"hero": "Night Stalker", "name": "night_stalker", "size": 53, "rate": 53.5, "best": ["antimage", "clinkz", "juggernaut", "phoenix"], "worst": ["batrider", "meepo", "slardar", "tidehunter"]},
+				{"hero": "Phoenix", "name": "phoenix", "size": 3, "rate": 3, "best": ["sand_king", "rattletrap", "axe", "earthshaker"], "worst": ["clinkz", "juggernaut", "wisp", "silencer"]},
+				{"hero": "Clockwerk", "name": "rattletrap", "size": 32, "rate": 32.3, "best": ["sven", "crystal_maiden", "dark_seer", "earthshaker"], "worst": ["antimage", "huskar", "life_stealer", "juggernaut"]},
+				{"hero": "Sand King", "name": "sand_king", "size": 1, "rate": 1, "best": ["chaos_knight", "phantom_lancer", "lycan", "templar_assassin"], "worst": ["spectre", "shredder", "phoenix", "juggernaut"]},
+				{"hero": "Timbersaw", "name": "shredder", "size": 8, "rate": 8.1, "best": ["chaos_knight", "axe", "phantom_lancer", "meepo"], "worst": ["skywrath_mage", "silencer", "pugna", "death_prophet"]},
+				{"hero": "Wraith King", "name": "skeleton_king", "size": 4, "rate": 4, "best": ["spectre", "skywrath_mage", "queenofpain", "luna"], "worst": ["antimage", "invoker", "phantom_lancer", "undying"]},
+				{"hero": "Slardar", "name": "slardar", "size": 77, "rate": 77.8, "best": ["bounty_hunter", "antimage", "ursa", "treant"], "worst": ["tidehunter", "tinker", "venomancer", "visage"]},
+				{"hero": "Spirit Breaker", "name": "spirit_breaker", "size": 38, "rate": 38.4, "best": ["ancient_apparition", "antimage", "spectre", "night_stalker"], "worst": ["razor", "morphling", "meepo", "chaos_knight"]},
+				{"hero": "Sven", "name": "sven", "size": 7, "rate": 7.1, "best": ["chaos_knight", "phantom_lancer", "huskar", "meepo"], "worst": ["medusa", "razor", "windrunner", "batrider"]},
+				{"hero": "Tidehunter", "name": "tidehunter", "size": 5, "rate": 5.1, "best": ["slardar", "night_stalker", "broodmother", "phantom_lancer"], "worst": ["death_prophet", "nevermore", "viper", "razor"]},
+				{"hero": "Tiny", "name": "tiny", "size": 27, "rate": 27.3, "best": ["ursa", "slark", "phantom_lancer", "abaddon"], "worst": ["batrider", "viper", "visage", "huskar"]},
+				{"hero": "Treant Protector", "name": "treant", "size": 4, "rate": 4, "best": ["spirit_breaker", "spectre", "morphling", "queenofpain"], "worst": ["chen", "jakiro", "death_prophet", "ursa"]},
+				{"hero": "Tusk", "name": "tusk", "size": 98, "rate": 99, "best": ["windrunner", "slark", "abaddon", "crystal_maiden"], "worst": ["batrider", "wisp", "storm_spirit", "magnataur"]},
+				{"hero": "Undying", "name": "undying", "size": 72, "rate": 72.7, "best": ["winter_wyvern", "tiny", "skeleton_king", "spectre"], "worst": ["antimage", "ember_spirit", "clinkz", "gyrocopter"]},
+				{"hero": "IO", "name": "wisp", "size": 44, "rate": 44.4, "best": ["winter_wyvern", "silencer", "phoenix", "spectre"], "worst": ["luna", "huskar", "furion", "beastmaster"]}
+			]
+		}
+
+	]
+}

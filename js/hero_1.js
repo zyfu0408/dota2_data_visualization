@@ -1,3 +1,187 @@
+drawPartition();
+drawTypeDescription();
+
+function drawTypeDescription() {
+	var selection = d3.select("#typeDescription");
+	width_description = selection[0][0].clientWidth * 0.92;
+	height_description = width_description * 0.3;
+
+	var typeDescriptionSvg = d3.select("#typeDescription").append("svg")
+					.attr("width", width_description)
+					.attr("height", height_description);
+
+	var typeColor = d3.scale.category10();
+
+	var typeData = ["agility", "intelligence", "strength"]
+
+	typeDescriptionSvg.selectAll(".Description")
+		.data(typeData)
+		.enter()
+		.append("rect")
+		.attr("class", "Description")
+		.attr("transform", function(d, i){
+			return "translate(0," + height_description / 4 + ")";
+		})
+		.attr("width", height_description / 5)
+		.attr("height", height_description / 5)
+		.attr("x", function(d, i){
+			return i * 1/3 * width_description;
+		})
+		.attr("y", 0)
+		.style("fill", function(d, i){
+			if (i === 0) {
+				return "#ff7f03"
+			} else if (i === 1) {
+				return "#2ca02c"
+			} else {
+				return "#d62728"
+			}
+		});
+
+	typeDescriptionSvg.selectAll(".words")
+		.data(typeData)
+		.enter()
+		.append("text")
+		.attr("class", "words")
+		.attr("transform", function(d, i){
+			return "translate(" + height_description / 4.5 + "," + height_description / 2.5 + ")";
+		})
+		.attr("x", function(d, i){
+			return i * 1/3 * width_description;
+		})
+		.attr("y", 0)
+		.text(function(d){
+			return d;
+		})
+
+}
+
+function drawPartition() {
+
+	var selection = d3.select("#partition");
+
+	width_partition = selection[0][0].clientWidth * 0.92;
+	height_partition = width_partition * 1.2;
+
+    radius = Math.min(width_partition, height_partition) / 2,
+    color = d3.scale.category10();
+
+	var partitionSvg = d3.select("#partition").append("svg")
+	    .attr("width", width_partition)
+	    .attr("height", height_partition)
+	  .append("g")
+	    .attr("transform", "translate(" + width_partition / 2 + "," + height_partition / 2 + ")");
+
+	var partition = d3.layout.partition()
+	    .sort(null)
+	    .size([2 * Math.PI, radius * radius])
+	    .value(function(d) { return d.size; });
+
+	var arc = d3.svg.arc()
+	    .startAngle(function(d) { return d.x; })
+	    .endAngle(function(d) { return d.x + d.dx; })
+	    .innerRadius(function(d) { return Math.sqrt(d.y); })
+	    .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
+
+	d3.json("data/herobp.json", function(error, root) {
+	  if (error) throw error;
+	  console.log(root);
+
+	  var nodes = partition.nodes(root);
+	  var links = partition.links(nodes);
+
+	  var arcs = partitionSvg.selectAll("g")
+	        .data(nodes)
+	        .enter().append("g");
+
+	  arcs.append("path")
+	      .attr("display", function(d) { return d.depth ? null : "none"; }) // hide inner ring
+	      .attr("d", arc)
+	      .attr("id", function(d){
+	      	return d.name + "," + d.rate + "," + d.hero;
+	      })
+	      .attr("class", function(d){
+	      	return d.best + "," + d.worst;
+	      })
+	      .style("stroke", "#fff")
+	      .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
+	      .style("fill-rule", "evenodd")
+	      .on("mouseover",function(d, i){
+	        d3.select(this)
+	          .style("fill","yellow");
+	        $("#versusHero").empty();
+	        $("#versusBPRate").empty();
+	        $("#best").empty();
+	        $("#worst").empty();
+	        
+	        if(($(this).attr("id") != "strength,undefined,undefined") && ($(this).attr("id") != "agility,undefined,undefined") && ($(this).attr("id") != "intelligence,undefined,undefined")) {
+		        var name = $(this).attr("id").split(",")[0];
+		        var rate = $(this).attr("id").split(",")[1];
+		        var hero = $(this).attr("id").split(",")[2];
+		        var best = $(this).attr("class").split(",").slice(0,4);
+		        var worst = $(this).attr("class").split(",").slice(4,9);
+
+		        var bestImage = "";
+		        for (var i = 0; i < best.length; i++) {
+		        	bestImage += "<img src='img/hero/" + best[i] + ".png' >";
+		        }
+
+		        var worstImage = "";
+		        for (var i = 0; i < best.length; i++) {
+		        	worstImage += "<img src='img/hero/" + worst[i] + ".png' >";
+		        }
+
+		        $("#versusHero").append("<h3><img width='150%' height='auto' src='img/hero/" + name + ".png'"  + " >" + hero + "</h3>");
+		        $("#versusBPRate").append("<h4>Ban/Pick Rate: " + parseFloat(rate) * 1.00  + "%</h4>");
+		        $("#best").append("<p><strong>BEST VERSUS</strong></p><p>" + bestImage + "</p>");
+		        $("#worst").append("<p><strong>WORST VERSUS</strong></p><p>" + worstImage + "</p>");
+
+	        } 
+	        
+	      })
+	      .on("mouseout",function(d){
+	        d3.select(this)
+	          .transition()
+	          .duration(200)
+	          .style("fill", function(d) { 
+	            return color((d.children ? d : d.parent).name); 
+	          });
+	      })
+	      .each(stash);
+
+	d3.selectAll("input").on("change", function change() {
+	    var value = this.value === "count"
+	        ? function() { return 1; }
+	        : function(d) { return d.size; };
+
+	    path
+	        .data(partition.value(value).nodes)
+	      .transition()
+	        .duration(1500)
+	        .attrTween("d", arcTween);
+	  });
+	});
+
+	// Stash the old values for transition.
+	function stash(d) {
+	  d.x0 = d.x;
+	  d.dx0 = d.dx;
+	}
+
+	// Interpolate the arcs in data space.
+	function arcTween(a) {
+	  var i = d3.interpolate({x: a.x0, dx: a.dx0}, a);
+	  return function(t) {
+	    var b = i(t);
+	    a.x0 = b.x;
+	    a.dx0 = b.dx;
+	    return arc(b);
+	  };
+	}
+
+	d3.select(self.frameElement).style("height", height_partition + "px");
+}
+
 var strength = [];
 var agility = [];
 var intelligence = [];
@@ -44,7 +228,7 @@ d3.csv("data/heroBp.csv", function(error, data){
 		bpData.push(data[i]);
 	}
 	getBpCount();
-	drawBPChart();
+	// drawBPChart();
 	drawDiverging(bpStrength);
 });
 
@@ -112,94 +296,94 @@ function chooseHeroType() {
 	}
 }
 
-function drawBPChart() {
-	var selection = d3.select("#bpchart");
+// function drawBPChart() {
+// 	var selection = d3.select("#bpchart");
 
-	width_bpchart = selection[0][0].clientWidth * 0.96;
-	height_bpchart = width_bpchart * 1.6;
+// 	width_bpchart = selection[0][0].clientWidth * 0.96;
+// 	height_bpchart = width_bpchart * 1.6;
 
-	padding_bpchart = {
-    	top: height_bpchart / 20,
-    	right: width_bpchart / 40,
-    	bottom: height_bpchart / 40,
-    	left: height_bpchart / 20
-  	};
+// 	padding_bpchart = {
+//     	top: height_bpchart / 20,
+//     	right: width_bpchart / 40,
+//     	bottom: height_bpchart / 40,
+//     	left: height_bpchart / 20
+//   	};
 
-  	bpchartSvg = d3.select("#bpchart")
-		.append("svg")
-		.attr("width", width_bpchart)
-		.attr("height", height_bpchart);
+//   	bpchartSvg = d3.select("#bpchart")
+// 		.append("svg")
+// 		.attr("width", width_bpchart)
+// 		.attr("height", height_bpchart);
 
-	totalHeight = height_bpchart - padding_bpchart.top - padding_bpchart.bottom;
-	totalWidth = width_bpchart - padding_bpchart.left - padding_bpchart.right;
+// 	totalHeight = height_bpchart - padding_bpchart.top - padding_bpchart.bottom;
+// 	totalWidth = width_bpchart - padding_bpchart.left - padding_bpchart.right;
 
-	rectTotalHeight = totalHeight * 0.85;
+// 	rectTotalHeight = totalHeight * 0.85;
 
-	rectPadding = 6;
+// 	rectPadding = 6;
 
-	bpY = d3.scale.linear()
-		.domain([0, d3.sum(heroTypeArray)])
-		.rangeRound([rectTotalHeight - 2 * rectPadding, 0]);
+// 	bpY = d3.scale.linear()
+// 		.domain([0, d3.sum(heroTypeArray)])
+// 		.rangeRound([rectTotalHeight - 2 * rectPadding, 0]);
 	
-	bpColor = ["#d62728", "#2ca02c", "#9edae5"];
+// 	bpColor = ["#d62728", "#2ca02c", "#9edae5"];
 
-	bpchartSvg.selectAll(".HeroTypeRects")
-		.data(heroTypeArray)
-		.enter()
-		.append("rect")
-			.attr("class", "HeroTypeRects")
-			.attr("id", function(d, i){
-				if (i === 0) {
-					return "strengthType"
-				} else if (i === 1) {
-					return "agilityType"
-				} else {
-					return "intelligenceType"
-				}
-			})
-			.attr("transform", "translate(" + totalWidth * 1/3 + "," + totalHeight * 0.15 + ")")
-			.attr("x", 0)
-			.attr("width", totalWidth * 1/4 * 1/3)
-			.attr("height", function(d, i){
-				return rectTotalHeight * heroTypeArray[i] / sum;
-			})
-			.attr("y", function(d, i){
-				if (i === 0) {
-					return 0;
-				} else if (i === 1) {
-					return rectPadding + rectTotalHeight * heroTypeArray[0] / sum;
-				} else if (i === 2) {
-					return rectPadding * 2 + rectTotalHeight * (heroTypeArray[0] + heroTypeArray[1]) / sum;
-				}
-			})
-			.attr("fill", function(d, i){
-				return bpColor[i];
-			})
-			.on("mouseover", function(d){
-				if ($(this).attr("id") === "strengthType") {
-					console.log(1);
-				} else if ($(this).attr("id") === "agilityType") {
-					console.log(2); 
-				} else if ($(this).attr("id") === "intelligenceType") {
-					console.log(3);
-				}
-			})
-}
+// 	bpchartSvg.selectAll(".HeroTypeRects")
+// 		.data(heroTypeArray)
+// 		.enter()
+// 		.append("rect")
+// 			.attr("class", "HeroTypeRects")
+// 			.attr("id", function(d, i){
+// 				if (i === 0) {
+// 					return "strengthType"
+// 				} else if (i === 1) {
+// 					return "agilityType"
+// 				} else {
+// 					return "intelligenceType"
+// 				}
+// 			})
+// 			.attr("transform", "translate(" + totalWidth * 1/3 + "," + totalHeight * 0.15 + ")")
+// 			.attr("x", 0)
+// 			.attr("width", totalWidth * 1/4 * 1/3)
+// 			.attr("height", function(d, i){
+// 				return rectTotalHeight * heroTypeArray[i] / sum;
+// 			})
+// 			.attr("y", function(d, i){
+// 				if (i === 0) {
+// 					return 0;
+// 				} else if (i === 1) {
+// 					return rectPadding + rectTotalHeight * heroTypeArray[0] / sum;
+// 				} else if (i === 2) {
+// 					return rectPadding * 2 + rectTotalHeight * (heroTypeArray[0] + heroTypeArray[1]) / sum;
+// 				}
+// 			})
+// 			.attr("fill", function(d, i){
+// 				return bpColor[i];
+// 			})
+// 			.on("mouseover", function(d){
+// 				if ($(this).attr("id") === "strengthType") {
+// 					console.log(1);
+// 				} else if ($(this).attr("id") === "agilityType") {
+// 					console.log(2); 
+// 				} else if ($(this).attr("id") === "intelligenceType") {
+// 					console.log(3);
+// 				}
+// 			})
+// }
 
-function drawHeroRect(bpdataset) {
-	bpchartSvg.selectAll(".HeroRects")
-		.data(bpdataset)
-		.enter()
-		.append("rect")
-			.attr("class", "HeroType")
-			.attr("id", function(d){
-				return d.Hero + "BpRect"
-			})
-			.attr("transform", "translate(" + totalWidth * 2/3 + "," + totalHeight * 0.15 + ")")
-			.attr("x", 0)
-			.attr("width", totalWidth * 1/4 * 1/3 * 2/3)
-			// .attr("height", )
-}
+// function drawHeroRect(bpdataset) {
+// 	bpchartSvg.selectAll(".HeroRects")
+// 		.data(bpdataset)
+// 		.enter()
+// 		.append("rect")
+// 			.attr("class", "HeroType")
+// 			.attr("id", function(d){
+// 				return d.Hero + "BpRect"
+// 			})
+// 			.attr("transform", "translate(" + totalWidth * 2/3 + "," + totalHeight * 0.15 + ")")
+// 			.attr("x", 0)
+// 			.attr("width", totalWidth * 1/4 * 1/3 * 2/3)
+// 			// .attr("height", )
+// }
 
 function drawDiverging(dataset) {
 	$("#diverging").empty();
@@ -220,6 +404,40 @@ function drawDiverging(dataset) {
   			.append("svg")
   			.attr("width", width_diverging)
   			.attr("height", height_diverging);
+
+  	var divergingDescription = ["ban", "pick"];
+
+  	var divergingColor = ["#843c39", "#e7ba52"];
+
+	divergingSvg.selectAll(".bpdescription")
+		.data(divergingDescription)
+		.enter()
+		.append("rect")
+		.attr("class", "bpdescription")
+		.attr("transform", function(d, i){
+			return "translate(" + (width_diverging / 6 + i * width_diverging / 4) + "," + height_diverging / 30 + ")";
+		})
+		.attr("width", width_diverging / 24)
+		.attr("height", width_diverging / 24)
+		.attr("x", 0)
+		.attr("y", 0)
+		.style("fill", function(d, i){
+			return divergingColor[i];
+		})
+
+	divergingSvg.selectAll(".bptext")
+		.data(divergingDescription)
+		.enter()
+		.append("text")
+		.attr("class", "bptext")
+		.attr("transform", function(d, i){
+			return "translate(" + (width_diverging / 22 + width_diverging / 6 + i * width_diverging / 4) + "," + height_diverging / 19 + ")";
+		})
+		.attr("x", 0)
+		.attr("y", 0)
+		.text(function(d){
+			return d;
+		})
 
   	bmax = d3.max(bpData.map(function(d){
 		return parseInt(d.BTimes);
@@ -247,16 +465,14 @@ function drawDiverging(dataset) {
 			.scale(yDiverging)
 			.orient("left");
 
-	var divergingColor = ["#843c39", "#e7ba52"];
-
 	divergingSvg.append("g")
 			.attr("class", "divergingX axis")
-			.attr("transform", "translate(" + padding_diverging.left + "," + padding_diverging.top + ")")
+			.attr("transform", "translate(" + padding_diverging.left + "," + padding_diverging.top * 1.5 + ")")
 			.call(xDivergingAxis);
 
 	divergingSvg.append("g")
 			.attr("class", "divergingY axis")
-			.attr("transform", "translate(" + padding_diverging.left + "," + padding_diverging.top + ")")
+			.attr("transform", "translate(" + padding_diverging.left + "," + padding_diverging.top * 1.5 + ")")
 			.call(yDivergingAxis);
 
 	divergingSvg.selectAll(".DivergingRects.P")
@@ -266,7 +482,7 @@ function drawDiverging(dataset) {
 			.attr("class", function(d){
 				return d.Hero + "Rect DivergingRects P"
 			})
-			.attr("transform", "translate(" + padding_diverging.left + "," + padding_diverging.top + ")")
+			.attr("transform", "translate(" + padding_diverging.left + "," + padding_diverging.top * 1.5 + ")")
 			.attr("width", function(d){
 				return xDiverging(d.PTimes - bmax);
 			})
@@ -284,7 +500,7 @@ function drawDiverging(dataset) {
 			.attr("class", function(d){
 				return d.Hero + "Rect DivergingRects B"
 			})
-			.attr("transform", "translate(" + padding_diverging.left + "," + padding_diverging.top + ")")
+			.attr("transform", "translate(" + padding_diverging.left + "," + padding_diverging.top  * 1.5 + ")")
 			.attr("width", function(d){
 				return xDiverging(0) - xDiverging(-d.BTimes);
 			})

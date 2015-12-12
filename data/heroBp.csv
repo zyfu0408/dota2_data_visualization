@@ -1,86 +1,86 @@
 Hero,Name,BPPosition,BPPhase,BPTimes,PTimes,BTimes,BPRates,HeroType
-abaddon,Abaddon,14.3,3.7,3,2,1,3,S
-alchemist,Alchemist,13.2,3.8,25,15,10,25.3,S
-ancient_apparition,Ancient Apparition,10.7,3.1,59,26,33,59.6,I
 antimage,Anti Mage,15.7,4.5,27,11,16,27.3,A
-axe,Axe,17,5,2,2,0,2,S
-bane,Bane,10.3,3,58,33,25,58.6,I
-batrider,Batrider,18,5.3,3,3,0,3,I
-beastmaster,Beastmaster,13,3.7,27,14,13,27.3,S
 bounty_hunter,Bounty Hunter,13.5,3.8,23,12,11,23.2,A
-brewmaster,Brewmaster,16.8,4.8,8,4,4,8.1,S
-bristleback,Bristleback,13.8,3.9,16,6,10,16.2,S
 broodmother,Broodmother,11.7,3.4,47,8,39,47.5,A
-chaos_knight,Chaos Knight,16,4,1,1,0,1,S
-chen,Chen,17.7,5.3,3,1,2,3,I
 clinkz,Clinkz,13,3.7,3,0,3,3,A
-crystal_maiden,Crystal Maiden,18,5,2,2,0,2,I
-dark_seer,Dark Seer,6.5,2.1,81,32,49,81.8,I
-dazzle,Dazzle,10,2.9,73,43,30,73.7,I
-death_prophet,Death Prophet,16,5,2,2,0,2,I
-disruptor,Disruptor,15.6,4.4,20,11,9,20.2,I
-doom_bringer,Doom,3.8,1.3,93,21,72,93.9,S
-dragon_knight,Dragon Knight,15.2,4.4,14,8,6,14.1,S
 drow_ranger,Drow Ranger,15.3,4,7,5,2,7.1,A
-earthshaker,Earthshaker,15.1,4.4,35,28,7,35.4,S
 ember_spirit,Ember Spirit,12.4,3.6,63,28,35,63.6,A
-furion,Natures Prophet,14.2,4.2,5,2,3,5.1,I
 gyrocopter,Gyrocopter,10.6,3.1,80,45,35,80.8,A
-huskar,Huskar,12,3.5,37,9,28,37.4,S
-invoker,Invoker,17.8,5.3,9,5,4,9.1,I
-jakiro,Jakiro,17.7,5.3,3,1,2,3,I
-juggernaut,Juggernaut,13.9,4,41,13,28,41.4,S
-leshrac,Leshrac,17.3,5,4,4,0,4,I
-lich,Lich,12.5,3.6,21,11,10,21.2,I
-life_stealer,Lifestealer,20,6,1,1,0,1,S
-lina,Lina,14.1,3.9,41,24,17,41.4,I
-lion,Lion,15.3,4.4,7,6,1,7.1,I
+juggernaut,Juggernaut,13.9,4,41,13,28,41.4,A
 lone_druid,Lone Druid,17,5,1,0,1,1,A
 luna,Luna,18.5,5.5,4,4,0,4,A
-lycan,Lycan,16.1,4.8,8,2,6,8.1,S
-magnataur,Magnus,16.8,5,8,6,2,8.1,S
 medusa,Medusa,20,6,1,1,0,1,A
 meepo,Meepo,13.3,3.8,12,2,10,12.1,A
 morphling,Morphling,11.5,3.5,2,1,1,2,A
 naga_siren,Naga Siren,19,6,1,1,0,1,A
 nevermore,Shadow Fiend,4.6,1.6,94,37,57,94.9,A
-night_stalker,Night Stalker,10.4,3,53,28,25,53.5,S
 nyx_assassin,Nyx Assassin,13.3,3.8,12,7,5,12.1,A
-ogre_magi,Ogre Magi,20,6,1,1,0,1,I
 phantom_lancer,Phantom Lancer,16,4.7,22,11,11,22.2,A
-phoenix,Phoenix,16,4.7,3,1,2,3,S
-pugna,Pugna,19,6,1,1,0,1,I
-queenofpain,Queen of Pain,6.5,2,83,35,48,83.8,I
-rattletrap,Clockwerk,14.1,4,32,18,14,32.3,S
 razor,Razor,17.7,5.2,13,7,6,13.1,A
-rubick,Rubick,15.9,4.5,17,14,3,17.2,I
-sand_king,Sand King,15,4,1,1,0,1,S
-shadow_demon,Shadow Demon,11.7,3.3,3,3,0,3,I
-shadow_shaman,Shadow Shaman,16.5,4.8,12,8,4,12.1,I
-shredder,Timbersaw,17.5,5.1,8,7,1,8.1,S
-silencer,Silencer,14.5,4,4,2,2,4,I
-skeleton_king,Wraith King,18.3,5.3,4,3,1,4,S
-skywrath_mage,Skywrath Mage,17.2,5,5,4,1,5.1,I
-slardar,Slardar,5.4,1.8,77,38,39,77.8,S
 slark,Slark,17.6,5.1,7,3,4,7.1,A
 spectre,Spectre,19.2,5.8,5,4,1,5.1,A
-spirit_breaker,Spirit Breaker,9.4,2.8,38,21,17,38.4,S
-storm_spirit,Storm Spirit,19,6,1,1,0,1,I
-sven,Sven,14,3.9,7,4,3,7.1,S
 templar_assassin,Templar Assassin,14.1,4,32,16,16,32.3,A
-tidehunter,Tidehunter,18.2,5.4,5,4,1,5.1,S
+ursa,Ursa,15,4,1,1,0,1,A
+vengefulspirit,Vengeful Spirit,15.4,4.4,12,9,3,12.1,A
+venomancer,Venomancer,15.7,4.3,3,2,1,3,A
+viper,Viper,15.7,4.5,27,11,16,27.3,A
+weaver,Weaver,20,6,2,2,0,2,A
+ancient_apparition,Ancient Apparition,10.7,3.1,59,26,33,59.6,I
+bane,Bane,10.3,3,58,33,25,58.6,I
+batrider,Batrider,18,5.3,3,3,0,3,I
+chen,Chen,17.7,5.3,3,1,2,3,I
+crystal_maiden,Crystal Maiden,18,5,2,2,0,2,I
+dark_seer,Dark Seer,6.5,2.1,81,32,49,81.8,I
+dazzle,Dazzle,10,2.9,73,43,30,73.7,I
+death_prophet,Death Prophet,16,5,2,2,0,2,I
+disruptor,Disruptor,15.6,4.4,20,11,9,20.2,I
+furion,Natures Prophet,14.2,4.2,5,2,3,5.1,I
+invoker,Invoker,17.8,5.3,9,5,4,9.1,I
+jakiro,Jakiro,17.7,5.3,3,1,2,3,I
+leshrac,Leshrac,17.3,5,4,4,0,4,I
+lich,Lich,12.5,3.6,21,11,10,21.2,I
+lina,Lina,14.1,3.9,41,24,17,41.4,I
+lion,Lion,15.3,4.4,7,6,1,7.1,I
+ogre_magi,Ogre Magi,20,6,1,1,0,1,I
+pugna,Pugna,19,6,1,1,0,1,I
+queenofpain,Queen of Pain,6.5,2,83,35,48,83.8,I
+rubick,Rubick,15.9,4.5,17,14,3,17.2,I
+shadow_demon,Shadow Demon,11.7,3.3,3,3,0,3,I
+shadow_shaman,Shadow Shaman,16.5,4.8,12,8,4,12.1,I
+silencer,Silencer,14.5,4,4,2,2,4,I
+skywrath_mage,Skywrath Mage,17.2,5,5,4,1,5.1,I
+storm_spirit,Storm Spirit,19,6,1,1,0,1,I
 tinker,Tinker,20,6,1,1,0,1,I
+visage,Visage,12.5,3.5,22,14,8,22.2,I
+windrunner,Windranger,13,3.7,53,32,21,53.5,I
+winter_wyvern,Winter Wyvern,9.5,2.8,85,49,36,85.9,I
+witch_doctor,Witch Doctor,14.9,4.1,8,7,1,8.1,I
+abaddon,Abaddon,14.3,3.7,3,2,1,3,S
+alchemist,Alchemist,13.2,3.8,25,15,10,25.3,S
+axe,Axe,17,5,2,2,0,2,S
+beastmaster,Beastmaster,13,3.7,27,14,13,27.3,S
+brewmaster,Brewmaster,16.8,4.8,8,4,4,8.1,S
+bristleback,Bristleback,13.8,3.9,16,6,10,16.2,S
+chaos_knight,Chaos Knight,16,4,1,1,0,1,S
+doom_bringer,Doom,3.8,1.3,93,21,72,93.9,S
+dragon_knight,Dragon Knight,15.2,4.4,14,8,6,14.1,S
+earthshaker,Earthshaker,15.1,4.4,35,28,7,35.4,S
+huskar,Huskar,12,3.5,37,9,28,37.4,S
+life_stealer,Lifestealer,20,6,1,1,0,1,S
+lycan,Lycan,16.1,4.8,8,2,6,8.1,S
+magnataur,Magnus,16.8,5,8,6,2,8.1,S
+night_stalker,Night Stalker,10.4,3,53,28,25,53.5,S
+phoenix,Phoenix,16,4.7,3,1,2,3,S
+rattletrap,Clockwerk,14.1,4,32,18,14,32.3,S
+sand_king,Sand King,15,4,1,1,0,1,S
+shredder,Timbersaw,17.5,5.1,8,7,1,8.1,S
+skeleton_king,Wraith King,18.3,5.3,4,3,1,4,S
+slardar,Slardar,5.4,1.8,77,38,39,77.8,S
+spirit_breaker,Spirit Breaker,9.4,2.8,38,21,17,38.4,S
+sven,Sven,14,3.9,7,4,3,7.1,S
+tidehunter,Tidehunter,18.2,5.4,5,4,1,5.1,S
 tiny,Tiny,11.6,3.1,27,24,3,27.3,S
 treant,Treant Protector,20,6,4,4,0,4,S
 tusk,Tusk,6.5,2.1,98,56,42,99,S
 undying,Undying,6.3,2,72,30,42,72.7,S
-ursa,Ursa,15,4,1,1,0,1,I
-vengefulspirit,Vengeful Spirit,15.4,4.4,12,9,3,12.1,A
-venomancer,Venomancer,15.7,4.3,3,2,1,3,A
-viper,Viper,15.7,4.5,27,11,16,27.3,A
-visage,Visage,12.5,3.5,22,14,8,22.2,I
-weaver,Weaver,20,6,2,2,0,2,A
-windrunner,Windranger,13,3.7,53,32,21,53.5,I
-winter_wyvern,Winter Wyvern,9.5,2.8,85,49,36,85.9,I
 wisp,Io,4.4,1.7,44,13,31,44.4,S
-witch_doctor,Witch Doctor,14.9,4.1,8,7,1,8.1,I

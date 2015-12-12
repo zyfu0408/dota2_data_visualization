@@ -165,3 +165,14 @@ div.selectedTooltip {
     border-radius: 2px;     
     pointer-events: none;   
 }
+
+div#partition {
+}
+
+div#versus {
+  margin-top: 35%;
+}
+
+.bptext {
+  font-size: 10px;
+}
