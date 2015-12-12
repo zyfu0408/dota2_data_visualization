@@ -85,7 +85,6 @@ function drawPartition() {
 
 	d3.json("data/herobp.json", function(error, root) {
 	  if (error) throw error;
-	  console.log(root);
 
 	  var nodes = partition.nodes(root);
 	  var links = partition.links(nodes);
@@ -107,6 +106,7 @@ function drawPartition() {
 	      .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
 	      .style("fill-rule", "evenodd")
 	      .on("mouseover",function(d, i){
+
 	        d3.select(this)
 	          .style("fill","yellow");
 	        $("#versusTitle").empty();
@@ -114,8 +114,12 @@ function drawPartition() {
 	        $("#versusBPRate").empty();
 	        $("#best").empty();
 	        $("#worst").empty();
+
+
 	        
 	        if(($(this).attr("id") != "strength,undefined,undefined") && ($(this).attr("id") != "agility,undefined,undefined") && ($(this).attr("id") != "intelligence,undefined,undefined")) {
+	        	$(this).attr("class").replace(",", ",")
+
 		        var name = $(this).attr("id").split(",")[0];
 		        var rate = $(this).attr("id").split(",")[1];
 		        var hero = $(this).attr("id").split(",")[2];
@@ -249,8 +253,6 @@ function getBpCount() {
 	max = d3.max(heroTypeArray);
 	sum = d3.sum(heroTypeArray);
 
-	console.log(heroTypeArray);
-	console.log(d3.sum(heroTypeArray));
 }
 
 function sortHero() {
@@ -260,30 +262,6 @@ function sortHero() {
 
 	}
 }
-
-// function sort() {
-// 	var sortTimeout = setTimeout(function(){
-// 		d3.select("input").property("checked", true).each(change);
-// 	})
-// }
-
-// function change() {
-// 	clearTimeout(sortTimeout);
-
-// 	var y0 = y.domain(data.sort(this.checked
-// 			? function(a, b) {
-// 				return b.BPTimes - a.BPTimes;
-// 			}
-// 			: function(a, b) {
-// 				return d3.ascending(a.Name, b.Name);
-// 			})
-// 			.map(function(d){
-// 				return d.Name;
-// 			}))
-// 			.copy();
-
-// 	svg.selectAll(".")
-// }
 
 function chooseHeroType() {
 
