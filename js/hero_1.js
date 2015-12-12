@@ -3,7 +3,7 @@ drawTypeDescription();
 
 function drawTypeDescription() {
 	var selection = d3.select("#typeDescription");
-	width_description = selection[0][0].clientWidth * 0.92;
+	width_description = selection[0][0].clientWidth;
 	height_description = width_description * 0.3;
 
 	var typeDescriptionSvg = d3.select("#typeDescription").append("svg")
@@ -20,7 +20,7 @@ function drawTypeDescription() {
 		.append("rect")
 		.attr("class", "Description")
 		.attr("transform", function(d, i){
-			return "translate(0," + height_description / 4 + ")";
+			return "translate(" + width_description / 11 + "," + height_description / 4 + ")";
 		})
 		.attr("width", height_description / 5)
 		.attr("height", height_description / 5)
@@ -44,7 +44,7 @@ function drawTypeDescription() {
 		.append("text")
 		.attr("class", "words")
 		.attr("transform", function(d, i){
-			return "translate(" + height_description / 4.5 + "," + height_description / 2.5 + ")";
+			return "translate(" + (width_description / 11 + height_description / 5) + "," + height_description / 2.5 + ")";
 		})
 		.attr("x", function(d, i){
 			return i * 1/3 * width_description;
@@ -60,7 +60,7 @@ function drawPartition() {
 
 	var selection = d3.select("#partition");
 
-	width_partition = selection[0][0].clientWidth * 0.92;
+	width_partition = selection[0][0].clientWidth;
 	height_partition = width_partition * 1.2;
 
     radius = Math.min(width_partition, height_partition) / 2,
@@ -109,6 +109,7 @@ function drawPartition() {
 	      .on("mouseover",function(d, i){
 	        d3.select(this)
 	          .style("fill","yellow");
+	        $("#versusTitle").empty();
 	        $("#versusHero").empty();
 	        $("#versusBPRate").empty();
 	        $("#best").empty();
@@ -131,6 +132,7 @@ function drawPartition() {
 		        	worstImage += "<img src='img/hero/" + worst[i] + ".png' >";
 		        }
 
+		        $("#versusTitle").append("BEST VERSUS and WORST VERSUS<br><br><br><br>" );
 		        $("#versusHero").append("<h3><img width='150%' height='auto' src='img/hero/" + name + ".png'"  + " >" + hero + "</h3>");
 		        $("#versusBPRate").append("<h4>Ban/Pick Rate: " + parseFloat(rate) * 1.00  + "%</h4>");
 		        $("#best").append("<p><strong>BEST VERSUS</strong></p><p>" + bestImage + "</p>");
@@ -390,7 +392,7 @@ function drawDiverging(dataset) {
 
 	var selection = d3.select("#diverging");
 
-	width_diverging = selection[0][0].clientWidth * 0.96;
+	width_diverging = selection[0][0].clientWidth;
 	height_diverging = width_diverging * 1.4;
 
 	padding_diverging = {
@@ -407,7 +409,7 @@ function drawDiverging(dataset) {
 
   	var divergingDescription = ["ban", "pick"];
 
-  	var divergingColor = ["#843c39", "#e7ba52"];
+  	var divergingColor = ["#aec7e8", "#d6616b"];
 
 	divergingSvg.selectAll(".bpdescription")
 		.data(divergingDescription)
