@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+  padding: 0;
+  font: 12px sans-serif;
+  background: #f0f0f0;
+}
+
+#header {
+  padding: 12px;
+  background: #303030;
+  border-bottom: 1px solid #f0f0f0;
+  color: #f0f0f0;
+}
+
+#content {
+  background: #fefefe;
+  border: 1px solid #e0e0e0;
+  margin: 12px 12px;
+  display: inline-block;
+}
+
+.axis path, .axis line{
+  fill: none;
+  stroke: #303030;
+  shape-rendering: crispEdges;
+}
+
+.axis .tick line {
+  stroke: #d3d3d3;
+}
+
+.dot {
+  stroke: #303030;
+  fill-opacity: 0.75;
+}
+
+.dot2 {
+  stroke: #303031;
+  fill-opacity: 0.75;
+}
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: left;
+  padding: 3px;
+  color: white;
+  margin:5px;
+  border:0;
+}
+
+.chart2 div {
+  font: 10px sans-serif;
+  background-color: #cc0000;
+  text-align: left;
+  padding: 3px;
+  color: white;
+  margin:5px;
+  border:0;
+}
+
+
+.tooltip {
+  font-size: 12px;
+  position: absolute;
+  padding: 8px;
+  pointer-events: none;
+  background: #303030;
+  border-radius: 4px;
+  border: 1px solid #fff;
+  color: #fff;
+  text-shadow: 0px 0px 3px #000;
+}
+
+.info {
+  font-size: 15px;
+  text-align: left;
+  font-family: Arial; 
+}
+
+.player {
+  position: absolute; 
+  top: 64px; 
+  right: 12px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.player img {
+  width: 120px;
+  height: 120px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+
+.player.ng-enter, .player.ng-leave {
+  transition:all linear 0.25s;
+}
+
+.player.ng-enter,
+.player.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.player.ng-leave,
+.player.ng-enter.ng-enter-active {
+  opacity:1;
+}
