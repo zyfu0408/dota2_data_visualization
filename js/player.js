@@ -1,285 +1,319 @@
-(function(){
+angular.module('dota2', [])
+  .constant('TEAMS', [
+  	"OG", "Secret", "EHOME", "EvilGeniuses", "VP", "VG", "LGD.cn",
+  	"CDEC", "Vega", "Mineski", "C9", "Newbee.Y","Nb","Fnatic.MY",
+  	"Team Unknown", "Alliance"
+  ])
+  .constant('COLORS', [
+    "#00004D", "#04824C", "#000000", "#00778b", "#C41E3A", "#6E263C",
+    "#0B60AD", "#4B90CC", "#00519A", "#04529C", "#C5001E", "#092C57",
+    "#CC0033", "#5C2F83", "#182D59", "#000000"
+  ])
+  .controller('MainCtrl', function($http, TEAMS, $filter) {
 
-	var app = angular.module('hero', []);
+    this.positions = [
+      { id: undefined, name: '(All)'},
+      { id: 'Midlane', name: 'Midlane'},
+      { id: 'Offlane', name: 'Offlane'},
+      { id: 'Carry', name: 'Carry'},
+      { id: 'Support', name: 'Support'}
+    ];
 
-	app.controller('TabController', function(){
-		this.tab = 1;
-
-		this.setTab = function(setTab){
-			this.tab = setTab;
-		};
-
-		this.selectedTab = function(selectedTab){
-			return this.tab === selectedTab;
-		}
-
-	});
-})();
-
-
-d3.csv("data/PlayerTradi1.csv", function(error, data){
-	// data = data.sort(compareByName);
-	//console.log(data);
-
-	var alliance = [];
-	var ehome = [];
-	var nb = [];
-	var og = [];
-	var nby = [];
-	var lgd = [];
-	var cdec = [];
-	var secret = [];
-	var eg = [];
-	var vg = [];
-	var mineski = [];
-	var unknown = [];
-	var fnatic = [];
-	var c9 = [];
-	var vega = [];
-	var vp = [];
+    this.teams = TEAMS.map(function(t) { return { id: t, name: t}; });
+    this.teams.unshift({id: undefined, name: '(All)'});
 
 
-	for (var i = 0; i < data.length; i++) {
-		if (data[i].Team === "OG") {
-			og.push(data[i]);
-		} else if (data[i].Team === "Secret") {
-			secret.push(data[i]);
-		} else if (data[i].Team === "EHOME") {
-			ehome.push(data[i]);
-		} else if (data[i].Team === "EG") {
-			eg.push(data[i]);
-		} else if (data[i].Team === "VP") {
-			vp.push(data[i]);
-		} else if (data[i].Team === "LGD.cn") {
-			lgd.push(data[i]);
-		} else if (data[i].Team === "VG") {
-			vg.push(data[i]);
-		} else if (data[i].Team === "CDEC") {
-			cdec.push(data[i]);
-		} else if (data[i].Team === "Vega") {
-			vega.push(data[i]);
-		} else if (data[i].Team === "Mineski") {
-			mineski.push(data[i]);
-		} else if (data[i].Team === "C9") {
-			c9.push(data[i]);
-		} else if (data[i].Team === "Nb") {
-			nb.push(data[i]);
-		} else if (data[i].Team === "Newbee.Y") {
-			nby.push(data[i]);
-		} else if (data[i].Team === "Fnatic.MY") {
-			fnatic.push(data[i]);
-		} else if (data[i].Team === "Alliance") {
-			alliance.push(data[i]);
-		} else if (data[i].Team === "Team Unknown") {
-			unknown.push(data[i]);
-		}
-	}
+    this.filter = {};
 
-	var allianceList = "";
-	for (var i = 0; i < alliance.length; i++) {
-		var imageSrc = "img/Player/" + alliance[i].Player + ".png";
-		allianceList += "<div class='playerbox'>";
-		allianceList += "<img id='" + alliance[i].Player + "' src='" + imageSrc + "' />";
-		allianceList += "</div>";
-	}
-	$("#Alliance").html(allianceList);
+    this.refilter = function() {
+      this.rows = $filter('filter')(this.csv, this.filter);
+    };
 
-	var cdecList = "";
-	for (var i = 0; i < cdec.length; i++) {
-		var imageSrc = "img/Player/" + cdec[i].Player + ".png";
-		cdecList += "<div class='playerbox'>";
-		cdecList += "<img id='" + cdec[i].Player + "' src='" + imageSrc + "' />";
-		cdecList += "</div>";
-	}
-	$("#CDEC").html(cdecList);
+    var self = this;
 
-	var c9List = "";
-	for (var i = 0; i < c9.length; i++) {
-		var imageSrc = "img/Player/" + c9[i].Player + ".png";
-		c9List += "<div class='playerbox'>";
-		c9List += "<img id='" + c9[i].Player + "' src='" + imageSrc + "' />";
-		c9List += "</div>";
-	}
-	$("#Cloud9").html(c9List);
+    this.onHover = function(item) {
+      self.hover = item;
+    };
 
-	var ehomeList = "";
-	for (var i = 0; i < ehome.length; i++) {
-		var imageSrc = "img/Player/" + ehome[i].Player + ".png";
-		ehomeList += "<div class='playerbox'>";
-		ehomeList += "<img id='" + ehome[i].Player + "' src='" + imageSrc + "' />";
-		ehomeList += "</div>";
-	}
-	$("#Ehome").html(ehomeList);
+    $http.get('data/PlayerTradi1.csv').then(function(resp) {
+      var csv = d3.csv.parse(resp.data);
+      self.csv = csv;
+      self.rows = self.csv;
+    });
 
-	var egList = "";
-	for (var i = 0; i < eg.length; i++) {
-		var imageSrc = "img/Player/" + eg[i].Player + ".png";
-		egList += "<div class='playerbox'>";
-		egList += "<img id='" + eg[i].Player + "' src='" + imageSrc + "' />";
-		egList += "</div>";
-	}
-	$("#EG").html(egList);
+  })
 
-	var fnaticList = "";
-	for (var i = 0; i < fnatic.length; i++) {
-		var imageSrc = "img/Player/" + fnatic[i].Player + ".png";
-		fnaticList += "<div class='playerbox'>";
-		fnaticList += "<img id='" + fnatic[i].Player + "' src='" + imageSrc + "' />";
-		fnaticList += "</div>";
-	}
-	$("#Fnatic").html(fnaticList);
+  .directive('chart', function(TEAMS, COLORS) {
+    return {
+      replace: false,
+      scope: {
+        league: '=',
+        data: '=',
+        hover: '&',
+      },
+      link: function(scope, elem, attrs) {
+        var tooltip = d3.select("body").append("div")
+          .attr("class", "tooltip")
+          .style("opacity", 0);
 
-	var lgdList = "";
-	for (var i = 0; i < lgd.length; i++) {
-		var imageSrc = "img/Player/" + lgd[i].Player + ".png";
-		lgdList += "<div class='playerbox'>";
-		lgdList += "<img id='" + lgd[i].Player + "' src='" + imageSrc + "' />";
-		lgdList += "</div>";
-	}
-	$("#LGD").html(lgdList);
+        var e = elem[0];
+        var margin = {
+          top:    20,
+          left:   40,
+          right:  20,
+          bottom: 20
+        };
+        var width  = 1000, height = 500;
+        // var width  = 500, height = 300;
+        var cwidth = width - margin.left - margin.right,
+        cheight = height - margin.top - margin.bottom;
+        var svg = d3.select(e)
+          .attr('width',  width)
+          .attr('height', height)
+          .append('g')
+          .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+// Plot 1
+        var paddingAxis = 40;
+        var xValue = function(d) { return parseInt(d.GPM); };
+        var xScale = d3.scale.linear().range([0, cwidth / 2]);
+        var xMap   = function(d) { return xScale(xValue(d)); };
+        var xAxis  = d3.svg.axis().scale(xScale).orient('bottom')
+          .tickSize(-cheight, 0);
 
-	var mineskiList = "";
-	for (var i = 0; i < mineski.length; i++) {
-		var imageSrc = "img/Player/" + mineski[i].Player + ".png";
-		mineskiList += "<div class='playerbox'>";
-		mineskiList += "<img id='" + mineski[i].Player + "' src='" + imageSrc + "' />";
-		mineskiList += "</div>";
-	}
-	$("#Mineski").html(mineskiList);
+        var yValue = function(d) { return parseInt(d.DmgPM); };
+        var yScale = d3.scale.linear().range([cheight, 0]);
+        var yMap   = function(d) { return yScale(yValue(d)); };
+        var yAxis  = d3.svg.axis().scale(yScale).orient('left')
+          .tickSize(-cwidth / 2, 0);
+// Plot 2
+        var xValue2 = function(d) { return parseInt(d.GoldSpent); };
+        var xScale2 = d3.scale.linear().range([(cwidth / 2 + paddingAxis), cwidth]);
+        var xMap2   = function(d) { return xScale2(xValue2(d)); };
+        var xAxis2  = d3.svg.axis().scale(xScale2).orient('bottom')
+          .tickSize(-cheight, 0);
 
-	var nbyList = "";
-	for (var i = 0; i < nby.length; i++) {
-		var imageSrc = "img/Player/" + nby[i].Player + ".png";
-		nbyList += "<div class='playerbox'>";
-		nbyList += "<img id='" + nby[i].Player + "' src='" + imageSrc + "' />";
-		nbyList += "</div>";
-	}
-	$("#NBY").html(nbyList);
+        var yValue2 = function(d) { return parseInt(d.TotalDamage); };
+        var yScale2 = d3.scale.linear().range([cheight, 0]);
+        var yMap2   = function(d) { return yScale2(yValue2(d)); };
+        var yAxis2  = d3.svg.axis().scale(yScale2).orient('left')
+          .tickSize(-cwidth / 2 + paddingAxis, 0);
+
+        var color = d3.scale.ordinal()
+          .domain(TEAMS)
+          .range(COLORS);
 
 
-	var nbList = "";
-	for (var i = 0; i < nb.length; i++) {
-		var imageSrc = "img/Player/" + nb[i].Player + ".png";
-		nbList += "<div class='playerbox'>";
-		nbList += "<img id='" + nb[i].Player + "' src='" + imageSrc + "' />";
-		nbList += "</div>";
-	}
-	$("#NB").html(nbList);
+        function linearReg(data) {
+          var sum = [0, 0, 0, 0, 0], n = 0, results = [];
 
-	var ogList = "";
-	for (var i = 0; i < og.length; i++) {
-		var imageSrc = "img/Player/" + og[i].Player + ".png";
-		ogList += "<div class='playerbox'>";
-		ogList += "<img id='" + og[i].Player + "' src='" + imageSrc + "' />";
-		ogList += "</div>";
-	}
-	$("#OG").html(ogList);
+          for (; n < data.length; n++) {
+            if (data[n][1]) {
+              sum[0] += data[n][0];
+              sum[1] += data[n][1];
+              sum[2] += data[n][0] * data[n][0];
+              sum[3] += data[n][0] * data[n][1];
+              sum[4] += data[n][1] * data[n][1];
+            }
+          }
 
-	var secretList = "";
-	for (var i = 0; i < og.length; i++) {
-		var imageSrc = "img/Player/" + secret[i].Player + ".png";
-		secretList += "<div class='playerbox'>";
-		secretList += "<img id='" + secret[i].Player + "' src='" + imageSrc + "' />";
-		secretList += "</div>";
-	}
-	$("#Secret").html(secretList);
+          var gradient = (n * sum[3] - sum[0] * sum[1]) / (n * sum[2] - sum[0] * sum[0]);
+          var intercept = (sum[1] / n) - (gradient * sum[0]) / n;
 
-	var unknownList = "";
-	for (var i = 0; i < og.length; i++) {
-		var imageSrc = "img/Player/" + unknown[i].Player + ".png";
-		unknownList += "<div class='playerbox'>";
-		unknownList += "<img id='" + unknown[i].Player + "' src='" + imageSrc + "' />";
-		unknownList += "</div>";
-	}
-	$("#Unknown").html(unknownList);
+          for (var i = 0, len = data.length; i < len; i++) {
+            var coordinate = [data[i][0], data[i][0] * gradient + intercept];
+            results.push(coordinate);
+          }
 
-	var vegaList = "";
-	for (var i = 0; i < og.length; i++) {
-		var imageSrc = "img/Player/" + vega[i].Player + ".png";
-		vegaList += "<div class='playerbox'>";
-		vegaList += "<img id='" + vega[i].Player + "' src='" + imageSrc + "' />";
-		vegaList += "</div>";
-	}
-	$("#Vega").html(vegaList);
+          var string = 'y = ' + Math.round(gradient*100) / 100 + 'x + ' + Math.round(intercept*100) / 100;
 
-	var vgList = "";
-	for (var i = 0; i < og.length; i++) {
-		var imageSrc = "img/Player/" + vg[i].Player + ".png";
-		vgList += "<div class='playerbox'>";
-		vgList += "<img id='" + vg[i].Player + "' src='" + imageSrc + "' />";
-		vgList += "</div>";
-	}
-	$("#VG").html(vgList);
+          return {equation: [gradient, intercept], points: results, string: string};
+        }
 
-	var vpList = "";
-	for (var i = 0; i < og.length; i++) {
-		var imageSrc = "img/Player/" + vp[i].Player + ".png";
-		vpList += "<div class='playerbox'>";
-		vpList += "<img id='" + vp[i].Player + "' src='" + imageSrc + "' />";
-		vpList += "</div>";
-	}
-	$("#VP").html(vpList);
+        scope.$watch('league', function(newVal, oldVal) {
+          //if (newVal === oldVal) { return; }
+          var rows = newVal;
+          xScale.domain([parseInt(d3.min(rows, xValue)) - 50, parseInt(d3.max(rows, xValue)) + 50]);
+          yScale.domain([parseInt(d3.min(rows, yValue)) - 50, parseInt(d3.max(rows, yValue)) + 50]);
+          xScale2.domain([parseInt(d3.min(rows, xValue2)) - 1000, parseInt(d3.max(rows, xValue2)) + 1000]);
+          yScale2.domain([parseInt(d3.min(rows, yValue2)) - 1000, parseInt(d3.max(rows, yValue2)) + 1000]);
+
+          //svg.selectAll('*').remove();
+
+          svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + cheight + ")")
+            .call(xAxis)
+            .append("text")
+            .attr("class", "label")
+            .attr("x", cwidth / 2)
+            .attr("y", -6)
+            .style("text-anchor", "end")
+            .text("Gold Per Minute");
+
+          svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+            .append("text")
+            .attr("class", "label")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Damage Per Minute");
+
+          svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + cheight + ")")
+            .call(xAxis2)
+            .append("text")
+            .attr("class", "label")
+            .attr("x", cwidth)
+            .attr("y", -6)
+            .style("text-anchor", "end")
+            .text("Gold Spent");
+
+          svg.append("g")
+            .attr("class", "y axis")
+            .attr("transform", "translate(" + (cwidth / 2 + paddingAxis) + ", 0)")
+            .call(yAxis2)
+            .append("text")
+            .attr("class", "label")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Total Damage");
 
 
-	$("img").on("click", function(d){
-		for (var i = 0; i < data.length; i++) {
-			if ($(this).attr("id") === data[i].Player) {
+        });
 
-				if ($(this).parent().css("border-color") === "rgb(0, 0, 255)") {
-					$(this).parent().css({"border-color": "rgb(51,51,51)", "border-width": 0});
-					$("#" + data[i].Player + "Panel").remove();
-					break;
+        scope.$watch('data', function(newVal, oldVal) {
+          if (newVal === oldVal) { return; }
+          var rows = newVal;
+          var dots = svg.selectAll('.dot2')
+            .data(rows, function(d) { return d.Player; });
+          
+          dots.exit()
+            .transition()
+            .style('opacity', 0.0)
+            .remove();
 
-				} else {
-					$(this).parent().css({ "border-style": "solid", "border-color": "blue", "border-width": 3});
+          dots.enter()
+            .append('circle')
+            .attr("class", 'dot2')
+            .attr('r', 5)
+            .style('opacity', 0.0)
+            .transition()
+            .style('opacity', 1.0);
 
-					var playerPanel = "";
-					playerPanel += "<div id='" + data[i].Player + "Panel' class='panel panel-default'>";
-					playerPanel += "<div class='panel-body'>";
-					playerPanel += "<h4><img postion='relative' src='img/Player/" + data[i].Player + ".png' /> <span class='heroName'><strong>" + data[i].Team + "."+ data[i].Player + "</strong><span></h4>";
+          dots
+            .attr('cx', xMap)
+            .attr('cy', yMap)
+            .style('fill', function(d) { return color(d.Team); })
+            .on("mouseover", function(d) {
+              scope.$apply(function() {
+                scope.hover({item: d});
+              });
+              d3.select(this)
+                .transition()
+                .duration(200)
+                .style('fill', function(d) { return d3.rgb(color(d.Team)).brighter(2.0); });
 
-					playerPanel += "<div class='well well-sm list-group'>";
-					playerPanel += "<h4 class='list-group-item-heading'>Total Number of Matches</h4>";
-					playerPanel += "<p class='list-group-item-text'><span class='lead'>" + data[i].Games + "</span> <em>Matches</em></p></div>";
+              tooltip.transition()
+                .duration(200)
+                .style("opacity", 0.9);
+              tooltip.html('<strong>' + d.Team + "." + d.Player + ' ' + d.Position + '</strong>' +
+                           '<br>Gold Per Minute: ' + d.GPM +
+                           '<br>Damage Per Minute: ' + d.DmgPM
+                          )
+                .style("left", (d3.event.pageX + 5) + "px")
+                .style("top", (d3.event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(d) {
+              scope.$apply(function() {
+                scope.hover({item: null });
+              });
 
-					playerPanel += "<div class='well well-sm list-group'>";
-					playerPanel += "<h4 class='list-group-item-heading'>Kills Per Match</h4>";
-					playerPanel += "<p class='list-group-item-text'><span class='lead'>" + data[i].K + "</span> <em>Kills</em></p></div>";
+              d3.select(this)
+                .style('fill', function(d) { return color(d.Team); });
 
-					playerPanel += "<div class='well well-sm list-group'>";
-					playerPanel += "<h4 class='list-group-item-heading'>Deaths Per Match</h4>";
-					playerPanel += "<p class='list-group-item-text'><span class='lead'>" + data[i].D + "</span> <em>Deaths</em></p></div>";
+              tooltip.transition()
+                .style("opacity", 0);
+            });
 
-					playerPanel += "<div class='well well-sm list-group'>";
-					playerPanel += "<h4 class='list-group-item-heading'>Assists Per Match</h4>";
-					playerPanel += "<p class='list-group-item-text'><span class='lead'>" + data[i].A + "</span> <em>Assists</em></p></div>";
 
-					playerPanel += "<div class='well well-sm list-group'>";
-					playerPanel += "<h4 class='list-group-item-heading'>Gold Per Minute</h4>";
-					playerPanel += "<p class='list-group-item-text'><span class='lead'>" + data[i].GPM + "</span> <em>Golds</em></p></div>";
+           var dots2 = svg.selectAll('.dot')
+            .data(rows, function(d) { return d.Player; });
+          
+          dots2.exit()
+            .transition()
+            .style('opacity', 0.0)
+            .remove();
 
-					playerPanel += "<div class='well well-sm list-group'>";
-					playerPanel += "<h4 class='list-group-item-heading'>Experiences Per Minute</h4>";
-					playerPanel += "<p class='list-group-item-text'><span class='lead'>" + data[i].XPM + "</span> <em>Experiences</em></p></div>";
+          dots2.enter()
+            .append('circle')
+            .attr("class", 'dot')
+            .attr('r', 5)
+            .style('opacity', 0.0)
+            .transition()
+            .style('opacity', 1.0);
 
-					playerPanel += "</div></div>";
+          dots2
+            .attr('cx', xMap2)
+            .attr('cy', yMap2)
+            .style('fill', function(d) { return color(d.Team); })
+            .on("mouseover", function(d) {
+              scope.$apply(function() {
+                scope.hover({item: d});
+              });
+              d3.select(this)
+                .transition()
+                .duration(200)
+                .style('fill', function(d) { return d3.rgb(color(d.Team)).brighter(2.0); });
 
-					if ($("#subplayerdata").children().length <= 4) {
-						$("#subplayerdata").prepend(playerPanel);
-					} else {
-						var word = $("#subplayerdata").children().last().attr("id");
-						var wordlength = $("#subplayerdata").children().last().attr("id").length;
-						var substring = word.substring(0, wordlength - 5);
-						console.log(substring);
-						$("#" + substring).parent().css({"border-color": "rgb(51,51,51)", "border-width": 0});
-						$("#subplayerdata").children().last().remove();
-						$("#subplayerdata").prepend(playerPanel);
-					};
-					
-					break;
-				}
-			}
-		}
-	});
+              tooltip.transition()
+                .duration(200)
+                .style("opacity", 0.9);
+              tooltip.html('<strong>' + d.Team + "." + d.Player + ' ' + d.Position + '</strong>' +
+                           '<br>Gold Spent: ' + d.GoldSpent +
+                           '<br>Total Damage: ' + d.TotalDamage
+                          )
+                .style("left", (d3.event.pageX + 5) + "px")
+                .style("top", (d3.event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(d) {
+              scope.$apply(function() {
+                scope.hover({item: null });
+              });
 
-});
+              d3.select(this)
+                .style('fill', function(d) { return color(d.Team); });
+
+              tooltip.transition()
+                .style("opacity", 0);
+            });
+
+        });
+
+
+
+
+      }
+    };
+  })
+        
+  .directive('fallbackImg', function() {
+    return {
+      scope: {
+        'fallbackImg': '@'
+      },
+      link: function(scope, elem, attrs) {
+        elem.on('error', function() {
+          scope.$apply(function() {
+            elem.attr('src', scope.fallbackImg);
+          });
+        });
+      }
+    };
+  });
+
