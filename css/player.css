@@ -80,7 +80,7 @@ body {
 
 .player {
   position: absolute; 
-  top: 150px; 
+  /*top: 150px; */
   right: 12px;
   text-align: center;
   font-size: 18px;
