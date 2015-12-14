@@ -131,8 +131,8 @@ angular.module('dota2', [])
         }
 
         scope.$watch('league', function(newVal, oldVal) {
-          //if (newVal === oldVal) { return; }
-          var rows = newVal;
+          if (newVal === oldVal) { return; }
+          rows = newVal;
           xScale.domain([parseInt(d3.min(rows, xValue)) - 50, parseInt(d3.max(rows, xValue)) + 50]);
           yScale.domain([parseInt(d3.min(rows, yValue)) - 50, parseInt(d3.max(rows, yValue)) + 50]);
           xScale2.domain([parseInt(d3.min(rows, xValue2)) - 1000, parseInt(d3.max(rows, xValue2)) + 1000]);

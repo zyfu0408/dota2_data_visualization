@@ -1,0 +1,110 @@
+{
+  "name": "OG",
+  "winners": [
+    {
+      "name": "Evil Geniuses",
+      "winners": [
+         {"name": "Evil Geniuses",
+          "winners": [
+           {"name": "Evil Geniuses"},
+           {"name": "Vega Squadron"} 
+           ]
+         },
+         {"name": "CDEC Gaming",
+           "winners": [
+           {"name": "CDEC Gaming"},
+           {"name": "LGD Gaming"} 
+           ]
+         } 
+      ]
+    },
+    {
+      "name": "Team Secret",
+      "winners": [
+         {"name": "Team Secret",
+          "winners": [
+           {"name": "Team Secret"},
+           {"name": "Mineski"} 
+           ]
+         },
+         {"name": "Vici Gaming",
+           "winners": [
+           {"name": "Vici Gaming"},
+           {"name": "Virtus.pro"} 
+           ]
+         } 
+      ]
+    }
+  ],
+  
+  "challengers": [
+    {"name": "Evil Geniuses"},
+    { "name": "OG",
+      "challengers": [
+        {"name": "OG",
+          "challengers": [
+          {"name": "CDEC Gaming"},
+          {"name": "OG",
+             "challengers": [
+              {"name": "OG",
+                "challengers": [
+                 {"name": "OG",
+                  "challengers": [
+                     {"name": "OG"},
+                     {"name": "Fnatic"}
+                     ]
+                 },
+                 {"name": "Mineski"}
+                ]
+              },
+              {"name": "Virtus.pro",
+                 "challengers": [
+                  {"name": "Virtus.pro"},
+                  {"name": "Alliance",
+                    "challengers": [
+                   {"name": "Cloud9"},
+                   {"name": "Alliance"}
+                   ]
+                  }
+                 ]
+              }
+            ]
+          }
+          ]
+        },
+        {
+        "name": "EHOME.cn",
+          "challengers":[
+           {"name": "Vici Gaming"},
+           {"name": "EHOME.cn",
+           "challengers": [
+           {"name": "LGD Gaming",
+              "challengers": [
+               {"name": "LGD Gaming"},
+               {"name": "Team Unknown",
+                 "challengers": [
+                   {"name": "Newbee"},
+                   {"name": "Team Unknown"}
+                   ]
+              }
+               ]
+          },
+          {"name": "EHOME.cn",
+                 "challengers": [
+                   {"name": "EHOME.cn",
+                       "challengers": [
+                         {"name": "EHOME.cn"},
+                         {"name": "Newbee Young"}
+                         ]
+                   },
+                   {"name": "Vega Squadron"}
+                   ]
+          }
+          ]
+        }
+      ]
+    }
+  ]
+ }
+ ]
+}
