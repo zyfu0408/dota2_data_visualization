@@ -80,15 +80,15 @@ body {
 
 .player {
   position: absolute; 
-  top: 64px; 
+  top: 150px; 
   right: 12px;
   text-align: center;
   font-size: 18px;
 }
 
 .player img {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
   text-align: center;
   border-radius: 4px;
 }
