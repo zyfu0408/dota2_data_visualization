@@ -138,6 +138,7 @@ angular.module('dota2', [])
           xScale2.domain([parseInt(d3.min(rows, xValue2)) - 1000, parseInt(d3.max(rows, xValue2)) + 1000]);
           yScale2.domain([parseInt(d3.min(rows, yValue2)) - 1000, parseInt(d3.max(rows, yValue2)) + 1000]);
 
+
           //svg.selectAll('*').remove();
 
           svg.append("g")
