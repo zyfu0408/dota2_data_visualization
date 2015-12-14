@@ -63,7 +63,8 @@ angular.module('dota2', [])
           right:  20,
           bottom: 20
         };
-        var width  = 1000, height = 500;
+        var width  = width_forPlayer, height = height_forPlayer;
+        // var width  = 1000, height = 500;
         // var width  = 500, height = 300;
         var cwidth = width - margin.left - margin.right,
         cheight = height - margin.top - margin.bottom;

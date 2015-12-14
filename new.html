@@ -50,6 +50,7 @@
     </nav>
 
     <div class="container" ng-app="dota2" ng-controller="MainCtrl as main">
+
       <div id="header">
         <label>Filtered By Team:</label>
         <select ng-model="main.filter.Team" ng-options="t.id as t.name for t in main.teams" ng-change="main.refilter()">
@@ -60,28 +61,35 @@
         </select>
       </div>
 
-      <svg id="content" chart league="main.csv" data="main.rows" hover="main.onHover(item)"></svg>
+      <div class="row">
+        <div class="col-md-9" id="forPlayerContent">
+          <svg id="content" chart league="main.csv" data="main.rows" hover="main.onHover(item)"></svg>
+        </div>
 
-      <div ng-if="main.hover"  class="player">
-      <img ng-src="img/TeamBadge/{{main.hover.Team}}.png">
-      <img ng-src="img/Player/{{main.hover.Player}}.png">
-      <div><strong>{{main.hover.Team}}.{{main.hover.Player}}</strong></div>
-      <div class = "info">Basic Statistics</div>
-      <div class = "chart">
-        <div ng-style = "{'width' : '{{20 * main.hover.K}}px', 'height' : '25px'}">Kills: {{main.hover.K}}</div>
-        <div ng-style = "{'width' : '{{20 * main.hover.D}}px', 'height' : '25px'}">Deaths: {{main.hover.D}}</div>
-        <div ng-style = "{'width' : '{{20 * main.hover.A}}px', 'height' : '25px'}">Assists: {{main.hover.A}}</div>
-        <div ng-style = "{'width' : '{{5 * main.hover.Lvl}}px', 'height' : '25px'}">Level: {{main.hover.Lvl}}</div>
+        <div class="col-md-3" id="forPanel">
+          <div ng-if="main.hover"  class="player">
+          <img ng-src="img/TeamBadge/{{main.hover.Team}}.png">
+          <img ng-src="img/Player/{{main.hover.Player}}.png">
+          <div><strong>{{main.hover.Team}}.{{main.hover.Player}}</strong></div>
+          <div class = "info">Basic Statistics</div>
+          <div class = "chart">
+            <div ng-style = "{'width' : '{{20 * main.hover.K}}px', 'height' : '25px'}">Kills: {{main.hover.K}}</div>
+            <div ng-style = "{'width' : '{{20 * main.hover.D}}px', 'height' : '25px'}">Deaths: {{main.hover.D}}</div>
+            <div ng-style = "{'width' : '{{20 * main.hover.A}}px', 'height' : '25px'}">Assists: {{main.hover.A}}</div>
+            <div ng-style = "{'width' : '{{5 * main.hover.Lvl}}px', 'height' : '25px'}">Level: {{main.hover.Lvl}}</div>
+          </div>
+
+          <div class = "info">Unit Minute Statistics</div>
+            <div class = "chart2">
+              <div ng-style = "{'width' : '{{20 * main.hover.LHPM}}px', 'height' : '25px'}">Last Hits: {{main.hover.LHPM}}</div>
+              <div ng-style = "{'width' : '{{0.5 * main.hover.DmgPM}}px', 'height' : '25px'}">Damage: {{main.hover.DmgPM}}</div>
+              <div ng-style = "{'width' : '{{0.2 * main.hover.GPM}}px', 'height' : '25px'}">Gold: {{main.hover.GPM}}</div>
+              <div ng-style = "{'width' : '{{0.2 * main.hover.XPM}}px', 'height' : '25px'}">Exp: {{main.hover.XPM}}</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class = "info">Unit Minute Statistics</div>
-      <div class = "chart2">
-        <div ng-style = "{'width' : '{{20 * main.hover.LHPM}}px', 'height' : '25px'}">Last Hits: {{main.hover.LHPM}}</div>
-        <div ng-style = "{'width' : '{{0.5 * main.hover.DmgPM}}px', 'height' : '25px'}">Damage: {{main.hover.DmgPM}}</div>
-        <div ng-style = "{'width' : '{{0.2 * main.hover.GPM}}px', 'height' : '25px'}">Gold: {{main.hover.GPM}}</div>
-        <div ng-style = "{'width' : '{{0.2 * main.hover.XPM}}px', 'height' : '25px'}">Exp: {{main.hover.XPM}}</div>
-      </div>
-    </div>
     </div>
 
     <div class="container">
@@ -161,6 +169,13 @@
       ga('create', 'UA-34380248-1', 'auto');
       ga('send', 'pageview');
 
+    </script>
+
+    <script type="text/javascript">
+      var selection = d3.select("#forPlayerContent");
+
+      width_forPlayer = selection[0][0].clientWidth * 0.96;
+      height_forPlayer = width_forPlayer;
     </script>
 
   </body>
