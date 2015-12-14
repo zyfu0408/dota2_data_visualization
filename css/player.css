@@ -51,7 +51,7 @@ body {
 
 .chart2 div {
   font: 10px sans-serif;
-  background-color: #cc0000;
+  background-color: #31a354;
   text-align: left;
   padding: 3px;
   color: white;
@@ -75,7 +75,8 @@ body {
 .info {
   font-size: 15px;
   text-align: left;
-  font-family: Arial; 
+  font-family: cursive;
+  font-weight: 700;
 }
 
 .player {
