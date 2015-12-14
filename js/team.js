@@ -7,7 +7,7 @@
     
     halfWidth = width_team / 3,
 
-    height_team = width_team / 4 - margin_team.top - margin_team.bottom,
+    height_team = width_team / 3 - margin_team.top - margin_team.bottom,
 
     i = 0,
 
