@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Heros</title>
+    <title>Data Visualization for Dota2</title>
 
     <!-- AngularJS -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
@@ -31,6 +31,7 @@
     <link href="css/jumbotron-narrow.css" rel="stylesheet">
     <link href="css/zhongyuanfu.css" rel="stylesheet">    
     <link rel="stylesheet" href="css/player.css">
+    <link rel="stylesheet" href="css/team.css">
 
   </head>
 
@@ -38,19 +39,143 @@
     <nav>
       <div class="container">
         <div class="header clearfix">
-<!--        <ul class="nav nav-pills pull-right">
-              <li role="presentation"><a href="index.html">Home</a></li>
-              <li role="presentation"><a href="team.html">Teams</a></li>
-              <li role="presentation"><a href="player.html">Players</a></li>
-              <li role="presentation" class="active"><a href="hero_1.html">Heros</a></li>
-            </ul> -->
           <h3 class="text-muted">Data Visualization for Dota2</h3>
         </div>
       </div>
     </nav>
 
-    <div class="container" ng-app="dota2" ng-controller="MainCtrl as main">
+    <div class="container">
+        <h3><strong><code>Team List</code></strong></h3>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <br>
+                    <img class="img img-responsive img-center" src="img/TeamBadge/EvilGeniuses.png" alt="Evil Geniuses">
+                    <br>
+                    <h3>Evil Geniuses
+                
+                    </h3>
+                  
+                </div>
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <img class="img img-responsive img-center" src="img/TeamBadge/CDEC.png" alt="CDEC Gaming">
+                    <h3>CDEC Gaming<br> 
+                       
+                        
+                    </h3>
+                </div>
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <img class="img img-responsive img-center" src="img/TeamBadge/LGD.cn.png" alt="LGD-GAMING">
+                    <h3>LGD-GAMING
+                        
+                    </h3>
+                </div>
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <img class="img img-responsive img-center" src="img/TeamBadge/VG.png" alt="Vici Gaming">
+                    <h3>Vici Gaming<br> 
+                        
+                        
+                    </h3>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <img class="img img-responsive img-center" src="img/TeamBadge/Vega.png" alt="Vega Squadron">
+                    <h3>Vega Squadron
+                        
+                    </h3>
+                </div>
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <br>
+                    <br>
+                    <img class="img img-responsive img-center" src="img/TeamBadge/Secret.png" alt="Team Secret">
+                    <br>
+                    <h3>Team Serect<br> 
+                        
+                        
+                    </h3>
+                </div>
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <img class="img img-responsive img-center" src="img/TeamBadge/VP.png" alt="Virtus.pro">
+                    <h3>Virtus.pro
+                        
+                    </h3>
+                </div>
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <img class="img img-responsive img-center" src="img/TeamBadge/EHOME.png" alt="EHOME">
+                    <h3>EHOME<br>
+                        
+                    </h3>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <img class="img img-responsive img-center" src="img/TeamBadge/C9.png" alt="Cloud9">
+                    <h3>Cloud9
+                        
+                    </h3>
+                </div>
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <img class="img img-responsive img-center" src="img/TeamBadge/Team Unknown.png" alt="Team Unknown">
+                    <h3>Team Unknown
+                        
+                    </h3>
+                </div>
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <img class="img img-responsive img-center" src="img/TeamBadge/Mineski.png" alt="Mineski">
+                    <h3>Mineski
+                        
+                    </h3>
+                </div>
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <img class="img img-responsive img-center" src="img/TeamBadge/Fnatic.MY.png" alt="Fnatic">
+                    <h3>Fnatic
+                        
+                    </h3>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <img class="img img-responsive img-center" src="img/TeamBadge/Nb.png" alt="Newbee">
+                    <h3>Newbee
+                        
+                    </h3>
+                </div>
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <img class="img img-responsive img-center" src="img/TeamBadge/Newbee.Y.png" alt="Newbee Young">
+                    <h3>Newbee Young<br> 
+                        
+                        
+                    </h3>
+                </div>
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <img class="img img-responsive img-center" src="img/TeamBadge/OG.png" alt="OG">
+                    <h3>OG<br>
+                        
+                    </h3>
+                </div>
+                <div class="col-lg-3 col-sm-4 text-left">
+                    <img class="img img-responsive img-center" src="img/TeamBadge/Alliance.png" alt="Alliance">
 
+                    <h3>Alliance
+                        
+                    </h3>
+                </div>
+             </div>
+        </div> 
+    </div>
+
+    <div class="container" id="teamChart">
+      <br>
+      <br>
+      <br>
+      <br>
+      <h3><strong><code>Road of Championship</code></strong></h3>
+    </div>
+
+    <div class="container" ng-app="dota2" ng-controller="MainCtrl as main">
+      <h3><strong><code>Player Statistics</code></strong></h3>
       <div id="header">
         <label>Filtered By Team:</label>
         <select ng-model="main.filter.Team" ng-options="t.id as t.name for t in main.teams" ng-change="main.refilter()">
@@ -60,33 +185,7 @@
         <select ng-model="main.filter.Position" ng-options="p.id as p.name for p in main.positions" ng-change="main.refilter()">
         </select>
 
-        <a class="btn btn primary" role = "button" href="new.html">
-        <kbd>Watch All Players</kbd></a>
-
       </div>
-
-<!-- <<<<<<< HEAD
-      <svg id="content" chart league="main.csv" data="main.rows" hover="main.onHover(item)"></svg>
-
-      <div ng-if="main.hover"  class="player">
-      <img ng-src="img/TeamBadge/{{main.hover.Team}}.png">
-      <img ng-src="img/Player/{{main.hover.Player}}.png">
-      <div><strong>{{main.hover.Team}}.{{main.hover.Player}}</strong></div>
-      <div class = "info">Basic Statistics</div>
-      <div class = "chart">
-        <div ng-style = "{'width' : '{{18 * main.hover.K}}px', 'height' : '25px'}">Kills: {{main.hover.K}}</div>
-        <div ng-style = "{'width' : '{{18 * main.hover.D}}px', 'height' : '25px'}">Deaths: {{main.hover.D}}</div>
-        <div ng-style = "{'width' : '{{15 * main.hover.A}}px', 'height' : '25px'}">Assists: {{main.hover.A}}</div>
-        <div ng-style = "{'width' : '{{4 * main.hover.Lvl}}px', 'height' : '25px'}">Level: {{main.hover.Lvl}}</div>
-      </div>
-
-      <div class = "info">Unit Minute Statistics</div>
-      <div class = "chart2">
-        <div ng-style = "{'width' : '{{18 * main.hover.LHPM}}px', 'height' : '25px'}">Last Hits: {{main.hover.LHPM}}</div>
-        <div ng-style = "{'width' : '{{0.4 * main.hover.DmgPM}}px', 'height' : '25px'}">Damage: {{main.hover.DmgPM}}</div>
-        <div ng-style = "{'width' : '{{0.2 * main.hover.GPM}}px', 'height' : '25px'}">Gold: {{main.hover.GPM}}</div>
-        <div ng-style = "{'width' : '{{0.2 * main.hover.XPM}}px', 'height' : '25px'}">Exp: {{main.hover.XPM}}</div>
-======= -->
       <div class="row">
         <div class="col-md-9" id="forPlayerContent">
           <svg id="content" chart league="main.csv" data="main.rows" hover="main.onHover(item)"></svg>
@@ -119,7 +218,7 @@
     </div>
 
     <div class="container">
-
+      <h3><strong><code>Hero List</code></strong></h3>
       <div id="first" class="row container-hero">
         <div class="col-md-12">
           <p><img class="herotype" src="img/dota_icon/strength.png" /> <kbd>Strength</kdb></p>
@@ -143,7 +242,7 @@
 
       <div class="row container-hero">
         <div class="col-md-12">
-          <h1 align="center">Draft Statistics</h1>
+          <h3><strong><code>Draft Statistics</code></strong></h3>
           <br>
           <div id="draft" class="row">
             <div class="col-md-4">
@@ -177,6 +276,8 @@
       </div>
 
     </div>
+
+    <script src="js/team.js"></script>
 
     <script src="js/hero_1.js"></script>
 
