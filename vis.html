@@ -184,8 +184,8 @@
         <label>Filtered By Position:</label>
         <select ng-model="main.filter.Position" ng-options="p.id as p.name for p in main.positions" ng-change="main.refilter()">
         </select>
-        <a class="btn btn primary" role = "button" href="vis.html">
-        <kbd>Watch All Players</kbd></a>
+        <label class="btn btn primary" role = "button" onclick="myReload()">
+        <kbd>Watch All Players</kbd><label>
 
       </div>
       <div class="row">
@@ -305,6 +305,12 @@
 
       width_forPlayer = selection[0][0].clientWidth * 0.96;
       height_forPlayer = width_forPlayer * 0.7;
+    </script>
+
+    <script>
+      function myReload() {
+        location.reload();
+      }
     </script>
 
   </body>
