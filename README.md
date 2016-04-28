@@ -9,7 +9,7 @@ Team Member and Related Link
 
 [Github Repo Link](https://github.com/datavisfordota2/datavisfordota2.github.io)
 
-[Visualization Link (under construction)](http://datavisfordota2.github.io/)
+[Visualization Link (under construction)](http://zyfu0408.github.io/dota2_data_visualization)
 
 Overview and Motivation
 ---
